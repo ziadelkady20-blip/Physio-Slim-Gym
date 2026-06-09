@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Physio Slim Health Club | Premium Fitness in Fayoum</title>
+<meta name="description" content="Physio Slim Health Club – Premium fitness experience in Fayoum, Egypt. Professional coaches, advanced equipment, and flexible membership plans." />
+<meta property="og:title" content="Physio Slim Health Club" />
+<meta property="og:description" content="Transform Your Body. Build Your Strength. Unlock Your Potential." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  #lang-toggle:hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+  /* RTL support */
+  [dir="rtl"] nav { flex-direction: row-reverse; }
+  [dir="rtl"] .nav-links { flex-direction: row-reverse; }
+  [dir="rtl"] .section-label::before { margin-left: 12px; margin-right: 0; }
+  [dir="rtl"] .about-img-badge { right: auto; left: -20px; }
+  [dir="rtl"] .footer-grid { direction: rtl; }
+  [dir="rtl"] .contact-item { flex-direction: row-reverse; gap: 16px; }
+  [dir="rtl"] .contact-item > div:last-child { text-align: right; }
+  [dir="rtl"] .hours-item { flex-direction: row-reverse; }
+  [dir="rtl"] .why-card { text-align: right; }
+  [dir="rtl"] .about-stats { flex-wrap: wrap; }
+  [dir="rtl"] .hero-content { direction: rtl; }
+  [dir="rtl"] .hero-tagline { direction: rtl; }
+  [dir="rtl"] #mobile-menu { direction: rtl; text-align: right; }
+  [dir="rtl"] .plan-feature { flex-direction: row-reverse; justify-content: flex-end; }
+  [dir="rtl"] .nav-logo-text { text-align: right; }
+  [dir="rtl"] .footer-brand { text-align: right; }
+  [dir="rtl"] .footer-social { justify-content: flex-end; }
+  [dir="rtl"] .plans-tabs { direction: rtl; }
+  [dir="rtl"] .stats-item { direction: rtl; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #050505;
+    --surface: #0D0D0D;
+    --gold: #D4AF37;
+    --gold2: #C9A227;
+    --white: #FFFFFF;
+    --gray: #A0A0A0;
+    --border: rgba(212,175,55,0.18);
+    --glass: rgba(13,13,13,0.72);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLL PROGRESS ── */
+  #scroll-bar {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    z-index: 9999; transition: width 0.1s linear;
+  }
+
+  /* ── LOADER ── */
+  #loader {
+    position: fixed; inset: 0; background: var(--bg);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    z-index: 10000; transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  #loader .logo-shield {
+    width: 160px; height: 160px;
+    animation: loaderPulse 1.4s ease-in-out infinite;
+  }
+  #loader p {
+    margin-top: 18px; letter-spacing: 6px; font-size: 11px; color: var(--gold);
+    font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase;
+    animation: fadeIn 1s ease 0.4s both;
+  }
+  @keyframes loaderPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(212,175,55,0.5)); }
+    50% { transform: scale(1.08); filter: drop-shadow(0 0 28px rgba(212,175,55,0.9)); }
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 20px 40px; display: flex; align-items: center; justify-content: space-between;
+    transition: all 0.4s ease;
+  }
+  nav.scrolled {
+    background: var(--glass); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border); padding: 14px 40px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo svg { width: 44px; height: 44px; }
+  .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 15px; color: var(--white); line-height: 1.2; }
+  .nav-logo-text span { color: var(--gold); display: block; font-size: 10px; letter-spacing: 3px; font-weight: 600; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--gray); text-decoration: none; font-size: 13px; letter-spacing: 1.5px;
+    font-family: 'Montserrat', sans-serif; font-weight: 600; text-transform: uppercase;
+    transition: color 0.3s;  position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+    background: var(--gold); transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000; font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    padding: 10px 22px; border: none; cursor: pointer; text-decoration: none;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: filter 0.3s;
+  }
+  .nav-cta:hover { filter: brightness(1.15); }
+  #menu-toggle { display: none; background: none; border: none; cursor: pointer; }
+  #menu-toggle span {
+    display: block; width: 24px; height: 2px; background: var(--white);
+    margin: 5px 0; transition: all 0.3s;
+  }
+  #mobile-menu {
+    display: none; position: fixed; inset: 0; background: rgba(5,5,5,0.98);
+    backdrop-filter: blur(20px); z-index: 999; flex-direction: column;
+    align-items: center; justify-content: center; gap: 32px;
+  }
+  #mobile-menu.open { display: flex; }
+  #mobile-menu a {
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 22px;
+    color: var(--white); text-decoration: none; letter-spacing: 4px; text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  #mobile-menu a:hover { color: var(--gold); }
+  #close-menu { position: absolute; top: 24px; right: 32px; background: none; border: none; cursor: pointer; }
+  #close-menu svg { width: 28px; height: 28px; stroke: var(--white); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; position: relative; overflow: hidden;
+    background: #000;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=80') center/cover no-repeat;
+    opacity: 0.35; transform: scale(1.05);
+    animation: heroZoom 20s ease-in-out infinite alternate;
+  }
+  @keyframes heroZoom { from { transform: scale(1.05); } to { transform: scale(1.12); } }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(5,5,5,0.55) 0%, rgba(5,5,5,0.3) 50%, rgba(5,5,5,0.9) 100%);
+  }
+  .hero-glow {
+    position: absolute; width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%, -60%);
+    animation: glowPulse 4s ease-in-out infinite;
+  }
+  @keyframes glowPulse { 0%, 100% { opacity: 0.6; transform: translate(-50%, -60%) scale(1); } 50% { opacity: 1; transform: translate(-50%, -60%) scale(1.1); } }
+  .hero-content { position: relative; z-index: 2; padding: 20px; animation: heroEnter 1.2s ease 0.3s both; }
+  @keyframes heroEnter { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border); padding: 7px 18px; border-radius: 2px;
+    font-size: 11px; letter-spacing: 4px; color: var(--gold); font-family: 'Montserrat', sans-serif;
+    font-weight: 600; text-transform: uppercase; margin-bottom: 28px;
+    background: rgba(212,175,55,0.07);
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: blink 1.5s infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .hero-title {
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: clamp(48px, 9vw, 108px); line-height: 0.92;
+    letter-spacing: -2px; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .hero-title .gold { color: var(--gold); }
+  .hero-sub {
+    font-family: 'Montserrat', sans-serif; font-size: clamp(12px, 2vw, 17px);
+    letter-spacing: 5px; color: var(--gray); text-transform: uppercase;
+    margin: 22px 0 38px; font-weight: 500;
+  }
+  .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000; font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 16px 36px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.3s; border: none; cursor: pointer;
+  }
+  .btn-gold:hover { filter: brightness(1.15); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    border: 1px solid rgba(255,255,255,0.3);
+    font-family: 'Montserrat', sans-serif; font-weight: 600;
+    font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 16px 36px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+  .scroll-indicator {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 2;
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+  .scroll-indicator span { font-size: 9px; letter-spacing: 4px; color: var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 600; }
+  .scroll-mouse { width: 24px; height: 38px; border: 1.5px solid rgba(212,175,55,0.5); border-radius: 12px; display: flex; justify-content: center; padding-top: 6px; }
+  .scroll-mouse::after { content: ''; width: 3px; height: 8px; background: var(--gold); border-radius: 2px; animation: scrollDot 1.5s ease-in-out infinite; }
+  @keyframes scrollDot { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(6px); opacity: 0.3; } }
+  @keyframes scrollBounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-6px); } }
+
+  /* ── SECTIONS SHARED ── */
+  section { padding: 110px 40px; }
+  .section-label {
+    font-size: 11px; letter-spacing: 5px; color: var(--gold); font-family: 'Montserrat', sans-serif;
+    font-weight: 700; text-transform: uppercase; display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+  }
+  .section-label::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+  .section-title {
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: clamp(32px, 5vw, 58px); line-height: 1; text-transform: uppercase; margin-bottom: 20px;
+  }
+  .section-title .gold { color: var(--gold); }
+  .gold-line { width: 60px; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); margin: 20px 0; }
+  .container { max-width: 1280px; margin: 0 auto; }
+
+  /* ── REVEAL ANIMATIONS ── */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.left { transform: translateX(-50px); }
+  .reveal.right { transform: translateX(50px); }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--surface); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-img-wrap { position: relative; }
+  .about-img {
+    width: 100%; aspect-ratio: 4/5; object-fit: cover;
+    border: 1px solid var(--border); filter: grayscale(20%);
+  }
+  .about-img-accent {
+    position: absolute; bottom: -20px; right: -20px;
+    width: 180px; height: 180px; border: 2px solid var(--gold); opacity: 0.3;
+    pointer-events: none;
+  }
+  .about-img-badge {
+    position: absolute; top: 30px; left: -20px;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    padding: 16px 20px; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .about-img-badge span { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 28px; color: #000; display: block; line-height: 1; }
+  .about-img-badge small { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 9px; color: #000; letter-spacing: 2px; text-transform: uppercase; }
+  .about-desc { color: var(--gray); line-height: 1.8; font-size: 15px; margin: 20px 0 36px; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .stat-box {
+    background: var(--bg); border: 1px solid var(--border); padding: 20px;
+    position: relative; overflow: hidden;
+  }
+  .stat-box::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  .stat-num { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 36px; color: var(--gold); line-height: 1; }
+  .stat-label { font-size: 11px; letter-spacing: 2px; color: var(--gray); text-transform: uppercase; margin-top: 6px; }
+
+  /* ── MEMBERSHIPS ── */
+  #memberships { background: var(--bg); }
+  .plans-header { text-align: center; margin-bottom: 64px; }
+  .plans-header .gold-line { margin: 20px auto; }
+  .plans-tabs { display: flex; justify-content: center; gap: 0; margin-bottom: 48px; border: 1px solid var(--border); width: fit-content; margin-left: auto; margin-right: auto; }
+  .plan-tab {
+    padding: 12px 32px; font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase; cursor: pointer;
+    background: transparent; border: none; color: var(--gray); transition: all 0.3s;
+  }
+  .plan-tab.active { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: #000; }
+  .plan-tab:hover:not(.active) { color: var(--gold); }
+  .plans-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .plan-panel { display: none; }
+  .plan-panel.active { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .pricing-card {
+    background: var(--surface); border: 1px solid var(--border); padding: 36px 28px;
+    position: relative; overflow: hidden; transition: all 0.4s ease; cursor: default;
+    display: flex; flex-direction: column;
+  }
+  .pricing-card:hover {
+    border-color: var(--gold); transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(212,175,55,0.12);
+  }
+  .pricing-card.featured {
+    border-color: var(--gold); background: linear-gradient(180deg, rgba(212,175,55,0.06) 0%, var(--surface) 100%);
+  }
+  .pricing-card.featured::before {
+    content: 'BEST VALUE'; position: absolute; top: 0; right: 0;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000; font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: 9px; letter-spacing: 2px; padding: 5px 14px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%);
+  }
+  .pricing-card .glow-corner {
+    position: absolute; bottom: 0; right: 0; width: 120px; height: 120px;
+    background: radial-gradient(circle at bottom right, rgba(212,175,55,0.08), transparent);
+    pointer-events: none;
+  }
+  .plan-sessions { font-size: 11px; letter-spacing: 3px; color: var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
+  .plan-price { font-family: 'Montserrat', sans-serif; font-weight: 900; margin-bottom: 4px; }
+  .plan-price .amount { font-size: 52px; line-height: 1; color: var(--white); }
+  .plan-price .currency { font-size: 20px; color: var(--gold); vertical-align: super; }
+  .plan-price .period { font-size: 13px; color: var(--gray); font-weight: 400; }
+  .plan-divider { height: 1px; background: var(--border); margin: 20px 0; }
+  .plan-feature { font-size: 13px; color: var(--gray); padding: 8px 0; display: flex; align-items: center; gap: 10px; }
+  .plan-feature svg { width: 14px; height: 14px; stroke: var(--gold); flex-shrink: 0; }
+  .plan-buttons { margin-top: auto; padding-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .btn-plan-gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold2)); color: #000;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; padding: 13px; text-align: center; text-decoration: none;
+    border: none; cursor: pointer; display: block;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: filter 0.3s;
+  }
+  .btn-plan-gold:hover { filter: brightness(1.15); }
+  .btn-plan-wa {
+    background: transparent; color: #25d366; border: 1px solid #25d366;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; padding: 12px; text-align: center; text-decoration: none;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: all 0.3s;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+  .btn-plan-wa:hover { background: rgba(37,211,102,0.1); }
+
+  /* ── WHY CHOOSE US ── */
+  #why { background: var(--surface); }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .why-card {
+    background: var(--bg); border: 1px solid var(--border); padding: 36px 28px;
+    transition: all 0.4s; position: relative; overflow: hidden;
+  }
+  .why-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent); transition: width 0.4s;
+  }
+  .why-card:hover { border-color: rgba(212,175,55,0.35); transform: translateY(-6px); }
+  .why-card:hover::after { width: 100%; }
+  .why-icon { width: 52px; height: 52px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 22px; }
+  .why-icon svg { width: 24px; height: 24px; stroke: var(--gold); }
+  .why-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 17px; margin-bottom: 12px; }
+  .why-desc { font-size: 13.5px; color: var(--gray); line-height: 1.7; }
+
+  /* ── FACILITIES ── */
+  #facilities { background: var(--bg); }
+  .facilities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; }
+  .facility-card {
+    position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: pointer;
+  }
+  .facility-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(40%); transition: all 0.5s; }
+  .facility-card:hover img { transform: scale(1.08); filter: grayscale(0%); }
+  .facility-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(5,5,5,0.9) 0%, rgba(5,5,5,0.2) 60%, transparent 100%);
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 28px;
+    transition: all 0.4s;
+  }
+  .facility-card:hover .facility-overlay { background: linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.3) 70%, transparent 100%); }
+  .facility-icon { width: 40px; height: 40px; background: rgba(212,175,55,0.15); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+  .facility-icon svg { width: 20px; height: 20px; stroke: var(--gold); }
+  .facility-name { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 18px; }
+  .facility-desc { font-size: 12.5px; color: var(--gray); margin-top: 6px; max-height: 0; overflow: hidden; transition: max-height 0.4s; }
+  .facility-card:hover .facility-desc { max-height: 60px; }
+
+  /* ── GALLERY ── */
+  #gallery { background: var(--surface); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 8px;
+    margin-top: 56px;
+  }
+  .gallery-item { position: relative; overflow: hidden; cursor: pointer; }
+  .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: 1; }
+  .gallery-item:not(:nth-child(1)) { aspect-ratio: 1; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; filter: grayscale(20%); }
+  .gallery-item:hover img { transform: scale(1.07); filter: grayscale(0%); }
+  .gallery-hover {
+    position: absolute; inset: 0; background: rgba(212,175,55,0.08);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid transparent;
+  }
+  .gallery-item:hover .gallery-hover { opacity: 1; border-color: var(--gold); }
+  .gallery-hover svg { width: 32px; height: 32px; stroke: var(--gold); }
+
+  /* ── STATS ── */
+  #stats {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); }
+  .stats-item { background: var(--bg); padding: 56px 40px; text-align: center; position: relative; overflow: hidden; }
+  .stats-item::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 2px; background: var(--gold); }
+  .stats-num { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 64px; line-height: 1; color: var(--gold); }
+  .stats-plus { font-size: 36px; }
+  .stats-label { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 4px; color: var(--gray); text-transform: uppercase; margin-top: 10px; }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--bg); overflow: hidden; }
+  .testimonials-header { text-align: center; margin-bottom: 56px; }
+  .testimonials-header .gold-line { margin: 20px auto; }
+  .testimonials-track { display: flex; gap: 24px; animation: slide 28s linear infinite; width: max-content; }
+  .testimonials-track:hover { animation-play-state: paused; }
+  .testimonials-wrapper { overflow: hidden; position: relative; }
+  .testimonials-wrapper::before, .testimonials-wrapper::after {
+    content: ''; position: absolute; top: 0; width: 100px; height: 100%; z-index: 2;
+    pointer-events: none;
+  }
+  .testimonials-wrapper::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+  .testimonials-wrapper::after { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
+  @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .testi-card {
+    background: var(--surface); border: 1px solid var(--border); padding: 32px 28px;
+    width: 340px; flex-shrink: 0; position: relative; backdrop-filter: blur(10px);
+    transition: border-color 0.3s;
+  }
+  .testi-card:hover { border-color: rgba(212,175,55,0.4); }
+  .stars { display: flex; gap: 4px; margin-bottom: 18px; }
+  .stars svg { width: 14px; height: 14px; fill: var(--gold); stroke: none; }
+  .testi-text { font-size: 14px; line-height: 1.7; color: var(--gray); margin-bottom: 22px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 14px; }
+  .testi-avatar { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--border); background: var(--bg); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 16px; color: var(--gold); }
+  .testi-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; }
+  .testi-since { font-size: 11px; color: var(--gray); }
+  .quote-mark { position: absolute; top: 20px; right: 24px; font-size: 72px; line-height: 1; color: rgba(212,175,55,0.08); font-family: Georgia, serif; font-weight: 900; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--surface); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .contact-item { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 28px; }
+  .contact-icon { width: 48px; height: 48px; background: rgba(212,175,55,0.08); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .contact-icon svg { width: 20px; height: 20px; stroke: var(--gold); }
+  .contact-label { font-size: 10px; letter-spacing: 3px; color: var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+  .contact-value { font-size: 14px; color: var(--white); }
+  .contact-value a { color: inherit; text-decoration: none; }
+  .contact-value a:hover { color: var(--gold); }
+  .contact-ctas { display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
+  .map-wrap {
+    border: 1px solid var(--border); overflow: hidden; position: relative;
+    height: 400px;
+  }
+  .map-wrap iframe { width: 100%; height: 100%; border: none; filter: grayscale(40%) invert(90%) hue-rotate(180deg); }
+  .map-label { position: absolute; top: 16px; left: 16px; background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--border); padding: 8px 16px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--bg); border-top: 1px solid var(--border); padding: 70px 40px 30px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand p { font-size: 13.5px; color: var(--gray); line-height: 1.8; margin-top: 20px; max-width: 280px; }
+  .footer-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 12px; }
+  .footer-links a { color: var(--gray); text-decoration: none; font-size: 13px; transition: color 0.3s; display: flex; align-items: center; gap: 8px; }
+  .footer-links a::before { content: ''; width: 16px; height: 1px; background: var(--gold); opacity: 0; transition: opacity 0.3s; }
+  .footer-links a:hover { color: var(--gold); padding-left: 0; }
+  .footer-links a:hover::before { opacity: 1; }
+  .footer-social { display: flex; gap: 12px; margin-top: 20px; }
+  .social-btn { width: 42px; height: 42px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; transition: all 0.3s; text-decoration: none; }
+  .social-btn:hover { border-color: var(--gold); background: rgba(212,175,55,0.1); }
+  .social-btn svg { width: 18px; height: 18px; stroke: var(--gray); transition: stroke 0.3s; }
+  .social-btn:hover svg { stroke: var(--gold); }
+  .footer-contact-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; font-size: 13px; color: var(--gray); }
+  .footer-contact-item svg { width: 16px; height: 16px; stroke: var(--gold); flex-shrink: 0; margin-top: 2px; }
+  .footer-contact-item a { color: inherit; text-decoration: none; }
+  .footer-contact-item a:hover { color: var(--gold); }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; }
+  .footer-bottom p { font-size: 12px; color: rgba(160,160,160,0.6); }
+  .footer-bottom .gold { color: var(--gold); }
+
+  /* ── FLOATING BUTTONS ── */
+  #float-wa {
+    position: fixed; bottom: 28px; left: 28px; z-index: 500;
+    background: #25d366; width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 24px rgba(37,211,102,0.4); text-decoration: none;
+    animation: waBounce 2s ease-in-out infinite;
+    transition: transform 0.3s;
+  }
+  #float-wa:hover { transform: scale(1.1); }
+  #float-wa svg { width: 28px; height: 28px; fill: white; }
+  @keyframes waBounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+  #back-top {
+    position: fixed; bottom: 28px; right: 28px; z-index: 500;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; border: none; opacity: 0; transform: translateY(20px);
+    transition: all 0.3s; clip-path: polygon(50% 0%, 100% 50%, 80% 50%, 80% 100%, 20% 100%, 20% 50%, 0% 50%);
+  }
+  #back-top.visible { opacity: 1; transform: translateY(0); }
+  #back-top:hover { filter: brightness(1.2); }
+  #back-top svg { width: 18px; height: 18px; stroke: #000; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .plan-panel.active { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    .about-img-wrap { max-width: 500px; }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .facilities-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 16/7; }
+  }
+  /* ── LIGHTBOX ── */
+  #lightbox {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 8000;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: all 0.3s ease;
+  }
+  #lightbox.open { opacity: 1; visibility: visible; }
+  #lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border: 1px solid var(--border); }
+  #lightbox-close {
+    position: absolute; top: 24px; right: 32px; background: none; border: none;
+    cursor: pointer; color: var(--white); font-size: 32px; line-height: 1;
+    width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border); transition: all 0.3s;
+  }
+  #lightbox-close:hover { border-color: var(--gold); color: var(--gold); }
+  #lightbox-prev, #lightbox-next {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(13,13,13,0.8); border: 1px solid var(--border);
+    color: var(--white); cursor: pointer; width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+    transition: all 0.3s;
+  }
+  #lightbox-prev:hover, #lightbox-next:hover { border-color: var(--gold); background: rgba(212,175,55,0.1); }
+  #lightbox-prev { left: 24px; }
+  #lightbox-next { right: 24px; }
+  #lightbox-caption {
+    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+    font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 3px;
+    color: var(--gold); text-transform: uppercase;
+  }
+
+  /* ── CTA BANNER ── */
+  #cta-banner {
+    background: linear-gradient(135deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%);
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 80px 40px; position: relative; overflow: hidden;
+  }
+  #cta-banner::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(212,175,55,0.07) 0%, transparent 70%);
+  }
+  .cta-banner-inner {
+    max-width: 1280px; margin: 0 auto; display: flex;
+    align-items: center; justify-content: space-between; gap: 40px;
+    flex-wrap: wrap; position: relative;
+  }
+  .cta-banner-text h2 {
+    font-family: 'Montserrat', sans-serif; font-weight: 900;
+    font-size: clamp(28px, 4vw, 52px); line-height: 1; text-transform: uppercase;
+  }
+  .cta-banner-text p {
+    color: var(--gray); font-size: 15px; margin-top: 12px; max-width: 440px;
+  }
+  .cta-banner-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* ── OPENING HOURS STRIP ── */
+  .hours-strip {
+    background: rgba(212,175,55,0.06); border: 1px solid var(--border);
+    padding: 20px 32px; display: flex; gap: 32px; flex-wrap: wrap;
+    align-items: center; margin-top: 40px;
+  }
+  .hours-item { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+  .hours-item svg { width: 16px; height: 16px; stroke: var(--gold); flex-shrink: 0; }
+  .hours-item strong { color: var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 700; margin-right: 4px; }
+
+  /* ── ABOUT IMG PARALLAX ── */
+  .about-img { transition: transform 0.1s linear; }
+
+  /* ── PLAN TAB indicator ── */
+  .plan-tab { position: relative; }
+  .plan-tab.active::after {
+    content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+    height: 2px; background: var(--gold); display: none;
+  }
+
+  /* ── GOLD DIVIDER ── */
+  .gold-divider {
+    display: flex; align-items: center; gap: 16px; margin: 60px 0;
+    max-width: 1280px; margin-left: auto; margin-right: auto;
+  }
+  .gold-divider::before, .gold-divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .gold-divider-icon { width: 36px; height: 36px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .gold-divider-icon svg { width: 16px; height: 16px; stroke: var(--gold); }
+
+  /* ── HERO LOGO ── */
+  .hero-logo-wrap { margin-bottom: 24px; }
+  .hero-logo-wrap svg { width: 100px; height: 100px; filter: drop-shadow(0 0 20px rgba(212,175,55,0.4)); }
+
+  /* ── ENHANCED HERO TEXT ── */
+  .hero-tagline {
+    display: flex; align-items: center; gap: 16px; justify-content: center;
+    margin-top: 28px; margin-bottom: 0;
+  }
+  .hero-tagline span { font-size: 11px; letter-spacing: 3px; color: var(--gray); font-family: 'Montserrat', sans-serif; font-weight: 600; text-transform: uppercase; }
+  .hero-tagline::before, .hero-tagline::after { content: ''; width: 40px; height: 1px; background: var(--border); }
+
+  /* ── TOAST NOTIFICATION ── */
+  #toast {
+    position: fixed; bottom: 100px; right: 28px; z-index: 600;
+    background: var(--surface); border: 1px solid var(--gold);
+    padding: 14px 20px; font-size: 13px; font-family: 'Montserrat', sans-serif;
+    font-weight: 600; color: var(--white); opacity: 0; transform: translateY(20px);
+    transition: all 0.4s ease; pointer-events: none; max-width: 260px;
+  }
+  #toast.show { opacity: 1; transform: translateY(0); }
+  #toast .toast-gold { color: var(--gold); }
+
+  /* Extra spacing polish */
+  .about-stats { margin-top: 32px; }
+  .contact-grid { gap: 80px; }
+
+  @media (max-width: 768px) {
+    .cta-banner-inner { flex-direction: column; text-align: center; }
+    .cta-banner-buttons { justify-content: center; }
+    .hours-strip { flex-direction: column; gap: 16px; }
+    #lightbox-prev { left: 8px; }
+    #lightbox-next { right: 8px; }
+    .contact-grid { gap: 40px; }
+    section { padding: 80px 20px; }
+    nav { padding: 16px 20px; }
+    nav.scrolled { padding: 12px 20px; }
+    .nav-links, .nav-cta { display: none; }
+    #menu-toggle { display: block; }
+    .plan-panel.active { grid-template-columns: 1fr; }
+    .plans-tabs { overflow-x: auto; width: 100%; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .why-grid { grid-template-columns: 1fr; }
+    .facilities-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 16/9; }
+    .hero-title { font-size: 52px; }
+    footer { padding: 56px 20px 24px; }
+    .hero-logo-wrap svg { width: 72px; height: 72px; }
+    #cta-banner { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-bar"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <!-- Physio Slim Logo Recreation -->
+  <img class="logo-shield" src="logo.jpg" alt="Physio Slim Health Club Logo" style="object-fit:contain;filter:drop-shadow(0 0 12px rgba(212,175,55,0.5));" />
+
+  <p>Physio Slim Health Club</p>
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<a id="float-wa" href="https://wa.me/201023265002" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- BACK TO TOP -->
+<button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+  <button id="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+  <button id="lightbox-prev" onclick="lightboxNav(-1)" aria-label="Previous">&#8249;</button>
+  <img id="lightbox-img" src="" alt="Gallery image" />
+  <button id="lightbox-next" onclick="lightboxNav(1)" aria-label="Next">&#8250;</button>
+  <div id="lightbox-caption"></div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"><span class="toast-gold">✓</span> Message sent via WhatsApp!</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <img src="logo.jpg" alt="Physio Slim Health Club" style="width:44px;height:44px;object-fit:contain;border-radius:4px;" />
+    <div class="nav-logo-text">PHYSIO SLIM<span>HEALTH CLUB</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#memberships">Memberships</a></li>
+    <li><a href="#facilities">Facilities</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/201023265002" class="nav-cta" target="_blank" data-en="Join Now" data-ar="انضم الآن">Join Now</a>
+  <button id="lang-toggle" aria-label="Toggle language" onclick="toggleLang()" style="background:transparent;border:1px solid var(--border);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;padding:7px 14px;border-radius:3px;cursor:pointer;transition:all 0.3s;margin-left:8px;">عربي</button>
+  <button id="menu-toggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu" role="dialog" aria-modal="true">
+  <button id="close-menu" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="#hero" onclick="closeMobile()">Home</a>
+  <a href="#memberships" onclick="closeMobile()">Memberships</a>
+  <a href="#facilities" onclick="closeMobile()">Facilities</a>
+  <a href="#gallery" onclick="closeMobile()">Gallery</a>
+  <a href="#testimonials" onclick="closeMobile()">Reviews</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="https://wa.me/201023265002" target="_blank" style="color:#D4AF37" data-en="Join Now ↗" data-ar="انضم الآن ↗">Join Now ↗</a>
+  <button onclick="toggleLang();closeMobile();" style="background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;padding:10px 20px;border-radius:3px;cursor:pointer;margin-top:8px;text-transform:uppercase;" id="lang-toggle-mobile">عربي / EN</button>
+</div>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-logo-wrap">
+      <img src="logo.jpg" alt="Physio Slim Health Club" style="width:160px;height:160px;object-fit:contain;filter:drop-shadow(0 0 20px rgba(212,175,55,0.4));" />
+    </div>
+    <div class="hero-badge">Premium Fitness • Fayoum, Egypt</div>
+    <h1 class="hero-title">
+      PHYSIO<span class="gold"> SLIM</span><br>HEALTH CLUB
+    </h1>
+    <p class="hero-sub">Premium Fitness Experience In Fayoum</p>
+    <p style="font-size:15px;color:var(--gray);margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7">Transform Your Body. Build Your Strength.<br>Unlock Your Potential.</p>
+    <div class="hero-buttons">
+      <a href="#memberships" class="btn-gold">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Join Now
+      </a>
+      <a href="https://wa.me/201023265002" target="_blank" class="btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+    <div class="hero-tagline" style="margin-top:28px">
+      <span>Transform</span>
+      <span style="color:var(--gold)">·</span>
+      <span>Build</span>
+      <span style="color:var(--gold)">·</span>
+      <span>Unlock</span>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-mouse"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal left">
+        <img class="about-img" src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=700&q=80" alt="Physio Slim gym interior" loading="lazy" />
+        <div class="about-img-accent"></div>
+        <div class="about-img-badge"><span>5+</span><small>Years</small></div>
+      </div>
+      <div class="reveal right">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">About <span class="gold">Physio Slim</span></h2>
+        <div class="gold-line"></div>
+        <p class="about-desc">
+          Physio Slim Health Club provides a premium fitness environment with professional coaching, advanced equipment, and a motivating atmosphere designed to help members achieve their goals. Located in the heart of Fayoum, we are committed to delivering a world-class fitness experience that combines science-backed training with personalized support.
+        </p>
+        <p class="about-desc" style="margin-top:-10px">
+          Whether you're starting your fitness journey or pushing to elite performance, our expert coaches and state-of-the-art facilities are here to help you transform. Every session, every rep, every drop of sweat — we're with you.
+        </p>
+        <div class="about-stats">
+          <div class="stat-box">
+            <div class="stat-num" data-count="1000">0</div>
+            <div class="stat-label">Active Members</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" data-count="10">0</div>
+            <div class="stat-label">Expert Coaches</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" data-count="50">0</div>
+            <div class="stat-label">Machines & Equipment</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" data-count="5">0</div>
+            <div class="stat-label">Years of Excellence</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ MEMBERSHIPS ═══════════════════════════ -->
+<section id="memberships">
+  <div class="container">
+    <div class="plans-header reveal">
+      <div class="section-label" style="justify-content:center">Pricing Plans</div>
+      <h2 class="section-title">Choose Your <span class="gold">Membership</span></h2>
+      <div class="gold-line"></div>
+      <p style="color:var(--gray);font-size:14px;max-width:480px;margin:0 auto">Flexible plans designed for every fitness level and commitment. Invest in yourself today.</p>
+    </div>
+    <div class="plans-tabs reveal">
+      <button class="plan-tab active" data-tab="silver">Silver</button>
+      <button class="plan-tab" data-tab="gold">Gold</button>
+      <button class="plan-tab" data-tab="platinum">Platinum</button>
+    </div>
+
+    <!-- SILVER -->
+    <div class="plan-panel active" id="tab-silver">
+      <div class="pricing-card reveal">
+        <div class="plan-sessions">8 Sessions</div>
+        <div class="plan-price"><span class="currency">EGP</span><span class="amount">300</span></div>
+        <div class="plan-divider"></div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>8 Training Sessions</div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Access to All Equipment</div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Coach Guidance</div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Locker Room Access</div>
+        <div class="plan-buttons">
+          <a href="https://wa.me/201023265002?text=I'm interested in Silver 8 Sessions plan - 300 EGP" class="btn-plan-gold" target="_blank">Join Now</a>
+          <a href="https://wa.me/201023265002?text=Silver 8 Sessions - 300 EGP" class="btn-plan-wa" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+        <div class="glow-corner"></div>
+      </div>
+      <div class="pricing-card reveal">
+        <div class="plan-sessions">24 Sessions</div>
+        <div class="plan-price"><span class="currency">EGP</span><span class="amount">840</span></div>
+        <div class="plan-divider"></div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>24 Training Sessions</div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Access to All Equipment</div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Coach Guidance</div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Locker Room Access</div>
+        <div class="plan-buttons">
+          <a href="https://wa.me/201023265002?text=I'm interested in Silver 24 Sessions plan - 840 EGP" class="btn-plan-gold" target="_blank">Join Now</a>
+          <a href="https://wa.me/201023265002?text=Silver 24 Sessions - 840 EGP" class="btn-plan-wa" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+        <div class="glow-corner"></div>
+      </div>
+      <div class="pricing-card featured reveal">
+        <div class="plan-sessions">48 Sessions</div>
+        <div class="plan-price"><span class="currency">EGP</span><span class="amount">1080</span></div>
+        <div class="plan-divider"></div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>48 Training Sessions</div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Access to All Equipment</div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Coach Guidance</div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Priority Booking</div>
+        <div class="plan-buttons">
+          <a href="https://wa.me/201023265002?text=I'm interested in Silver 48 Sessions plan - 1080 EGP" class="btn-plan-gold" target="_blank">Join Now</a>
+          <a href="https://wa.me/201023265002?text=Silver 48 Sessions - 1080 EGP" class="btn-plan-wa" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+        <div class="glow-corner"></div>
+      </div>
+      <div class="pricing-card reveal">
+        <div class="plan-sessions">96 Sessions</div>
+        <div class="plan-price"><span class="currency">EGP</span><span class="amount">1680</span></div>
+        <div class="plan-divider"></div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>96 Training Sessions</div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Access to All Equipment</div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>VIP Coach Support</div>
+        <div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Progress Tracking</div>
+        <div class="plan-buttons">
+          <a href="https://wa.me/201023265002?text=I'm interested in Silver 96 Sessions plan - 1680 EGP" class="btn-plan-gold" target="_blank">Join Now</a>
+          <a href="https://wa.me/201023265002?text=Silver 96 Sessions - 1680 EGP" class="btn-plan-wa" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+        <div class="glow-corner"></div>
+      </div>
+    </div>
+
+    <!-- GOLD -->
+    <div class="plan-panel" id="tab-gold">
+      <div class="pricing-card reveal"><div class="plan-sessions">12 Sessions</div><div class="plan-price"><span class="currency">EGP</span><span class="amount">400</span></div><div class="plan-divider"></div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>12 Training Sessions</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Full Equipment Access</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Dedicated Coach</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Nutrition Guidance</div><div class="plan-buttons"><a href="https://wa.me/201023265002?text=Gold 12 Sessions - 400 EGP" class="btn-plan-gold" target="_blank">Join Now</a><a href="https://wa.me/201023265002?text=Gold 12 Sessions - 400 EGP" class="btn-plan-wa" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a></div><div class="glow-corner"></div></div>
+      <div class="pricing-card reveal"><div class="plan-sessions">36 Sessions</div><div class="plan-price"><span class="currency">EGP</span><span class="amount">950</span></div><div class="plan-divider"></div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>36 Training Sessions</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Full Equipment Access</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Dedicated Coach</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Nutrition Guidance</div><div class="plan-buttons"><a href="https://wa.me/201023265002?text=Gold 36 Sessions - 950 EGP" class="btn-plan-gold" target="_blank">Join Now</a><a href="https://wa.me/201023265002?text=Gold 36 Sessions - 950 EGP" class="btn-plan-wa" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a></div><div class="glow-corner"></div></div>
+      <div class="pricing-card featured reveal"><div class="plan-sessions">72 Sessions</div><div class="plan-price"><span class="currency">EGP</span><span class="amount">1380</span></div><div class="plan-divider"></div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>72 Training Sessions</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Full Equipment Access</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>VIP Coach Support</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>InBody Analysis</div><div class="plan-buttons"><a href="https://wa.me/201023265002?text=Gold 72 Sessions - 1380 EGP" class="btn-plan-gold" target="_blank">Join Now</a><a href="https://wa.me/201023265002?text=Gold 72 Sessions - 1380 EGP" class="btn-plan-wa" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a></div><div class="glow-corner"></div></div>
+      <div class="pricing-card reveal"><div class="plan-sessions">144 Sessions</div><div class="plan-price"><span class="currency">EGP</span><span class="amount">2400</span></div><div class="plan-divider"></div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>144 Training Sessions</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Full Equipment Access</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Elite Coach Program</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Monthly InBody Analysis</div><div class="plan-buttons"><a href="https://wa.me/201023265002?text=Gold 144 Sessions - 2400 EGP" class="btn-plan-gold" target="_blank">Join Now</a><a href="https://wa.me/201023265002?text=Gold 144 Sessions - 2400 EGP" class="btn-plan-wa" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a></div><div class="glow-corner"></div></div>
+    </div>
+
+    <!-- PLATINUM -->
+    <div class="plan-panel" id="tab-platinum">
+      <div class="pricing-card reveal"><div class="plan-sessions">1 Month Unlimited</div><div class="plan-price"><span class="currency">EGP</span><span class="amount">500</span></div><div class="plan-divider"></div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Unlimited Access — 30 Days</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>All Equipment & Classes</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Personal Coach Access</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>InBody Scan Included</div><div class="plan-buttons"><a href="https://wa.me/201023265002?text=Platinum 1 Month Unlimited - 500 EGP" class="btn-plan-gold" target="_blank">Join Now</a><a href="https://wa.me/201023265002?text=Platinum 1 Month - 500 EGP" class="btn-plan-wa" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a></div><div class="glow-corner"></div></div>
+      <div class="pricing-card reveal"><div class="plan-sessions">3 Months Unlimited</div><div class="plan-price"><span class="currency">EGP</span><span class="amount">1200</span></div><div class="plan-divider"></div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Unlimited Access — 90 Days</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>All Equipment & Classes</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Dedicated Personal Coach</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Monthly InBody Analysis</div><div class="plan-buttons"><a href="https://wa.me/201023265002?text=Platinum 3 Months Unlimited - 1200 EGP" class="btn-plan-gold" target="_blank">Join Now</a><a href="https://wa.me/201023265002?text=Platinum 3 Months - 1200 EGP" class="btn-plan-wa" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a></div><div class="glow-corner"></div></div>
+      <div class="pricing-card featured reveal"><div class="plan-sessions">6 Months Unlimited</div><div class="plan-price"><span class="currency">EGP</span><span class="amount">1800</span></div><div class="plan-divider"></div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Unlimited Access — 180 Days</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>All Equipment & Classes</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Elite Personal Coach</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Bi-Monthly InBody Analysis</div><div class="plan-buttons"><a href="https://wa.me/201023265002?text=Platinum 6 Months Unlimited - 1800 EGP" class="btn-plan-gold" target="_blank">Join Now</a><a href="https://wa.me/201023265002?text=Platinum 6 Months - 1800 EGP" class="btn-plan-wa" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a></div><div class="glow-corner"></div></div>
+      <div class="pricing-card reveal"><div class="plan-sessions">12 Months Unlimited</div><div class="plan-price"><span class="currency">EGP</span><span class="amount">3350</span></div><div class="plan-divider"></div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Unlimited Access — Full Year</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>All Equipment & Classes</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Year-Round Elite Coaching</div><div class="plan-feature"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Quarterly InBody Analysis</div><div class="plan-buttons"><a href="https://wa.me/201023265002?text=Platinum 12 Months Unlimited - 3350 EGP" class="btn-plan-gold" target="_blank">Join Now</a><a href="https://wa.me/201023265002?text=Platinum 12 Months - 3350 EGP" class="btn-plan-wa" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a></div><div class="glow-corner"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WHY CHOOSE US ═══════════════════════════ -->
+<section id="why">
+  <div class="container">
+    <div class="reveal" style="max-width:500px">
+      <div class="section-label">Our Advantage</div>
+      <h2 class="section-title">Why Choose <span class="gold">Us</span></h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="why-title">Professional Coaches</div>
+        <div class="why-desc">Our certified coaches bring expertise and passion to every session, designing personalized programs that drive real, measurable results.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
+        <div class="why-title">Modern Equipment</div>
+        <div class="why-desc">State-of-the-art machinery and free weights sourced from leading manufacturers, maintained to the highest standards for safe and effective training.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+        <div class="why-title">Motivating Environment</div>
+        <div class="why-desc">A high-energy atmosphere designed to push boundaries and inspire peak performance, every single visit.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="why-title">Flexible Memberships</div>
+        <div class="why-desc">Silver, Gold, and Platinum tiers with session-based or unlimited plans — built to fit your lifestyle and fitness goals.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.18 2 2 0 012.08 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91A16 16 0 0016.09 17l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0124 18.18v2.74z"/></svg></div>
+        <div class="why-title">Personal Support</div>
+        <div class="why-desc">Ongoing guidance beyond the gym floor — WhatsApp support, progress check-ins, and nutrition tips from our team.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <div class="why-title">Results-Driven Training</div>
+        <div class="why-desc">Every program is built around measurable outcomes. InBody analysis, progress tracking, and adaptive training ensure you always move forward.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FACILITIES ═══════════════════════════ -->
+<section id="facilities">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:500px;margin:0 auto 0">
+      <div class="section-label" style="justify-content:center">World-Class Space</div>
+      <h2 class="section-title">Our <span class="gold">Facilities</span></h2>
+      <div class="gold-line" style="margin:20px auto"></div>
+    </div>
+    <div class="facilities-grid">
+      <div class="facility-card reveal">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700&q=80" alt="Strength Training" loading="lazy" />
+        <div class="facility-overlay">
+          <div class="facility-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M6 5v14M18 5v14M2 9h4M18 9h4M2 15h4M18 15h4"/></svg></div>
+          <div class="facility-name">Strength Training</div>
+          <div class="facility-desc">Full range of barbells, squat racks, and cable machines for complete strength development.</div>
+        </div>
+      </div>
+      <div class="facility-card reveal">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80" alt="Cardio Area" loading="lazy" />
+        <div class="facility-overlay">
+          <div class="facility-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg></div>
+          <div class="facility-name">Cardio Area</div>
+          <div class="facility-desc">Treadmills, bikes, and elliptical machines for high-performance cardio training.</div>
+        </div>
+      </div>
+      <div class="facility-card reveal">
+        <img src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=700&q=80" alt="Free Weights" loading="lazy" />
+        <div class="facility-overlay">
+          <div class="facility-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/><line x1="10" y1="12" x2="14" y2="12"/><line x1="4" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="20" y2="12"/></svg></div>
+          <div class="facility-name">Free Weights</div>
+          <div class="facility-desc">Comprehensive dumbbell range and Olympic free weight stations for isolated muscle development.</div>
+        </div>
+      </div>
+      <div class="facility-card reveal">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=700&q=80" alt="Functional Training" loading="lazy" />
+        <div class="facility-overlay">
+          <div class="facility-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <div class="facility-name">Functional Training</div>
+          <div class="facility-desc">Battle ropes, kettlebells, and plyometric platforms for athletic performance enhancement.</div>
+        </div>
+      </div>
+      <div class="facility-card reveal">
+        <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?w=700&q=80" alt="InBody Analysis" loading="lazy" />
+        <div class="facility-overlay">
+          <div class="facility-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div class="facility-name">InBody Analysis</div>
+          <div class="facility-desc">Professional body composition scanning to track muscle, fat, and hydration levels precisely.</div>
+        </div>
+      </div>
+      <div class="facility-card reveal">
+        <img src="https://images.unsplash.com/photo-1571388208497-71bedc66e932?w=700&q=80" alt="Personal Coaching" loading="lazy" />
+        <div class="facility-overlay">
+          <div class="facility-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <div class="facility-name">Personal Coaching</div>
+          <div class="facility-desc">1-on-1 sessions with certified coaches who design programs tailored to your exact goals.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ GALLERY ═══════════════════════════ -->
+<section id="gallery">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:0">
+      <div class="section-label" style="justify-content:center">The Experience</div>
+      <h2 class="section-title">Inside <span class="gold">Physio Slim</span></h2>
+      <div class="gold-line" style="margin:20px auto"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900&q=80" alt="Gym main floor" loading="lazy" />
+        <div class="gallery-hover"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1546483875-ad9014c88eba?w=500&q=80" alt="Weights area" loading="lazy" />
+        <div class="gallery-hover"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=500&q=80" alt="Training session" loading="lazy" />
+        <div class="gallery-hover"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=500&q=80" alt="Cardio machines" loading="lazy" />
+        <div class="gallery-hover"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=500&q=80" alt="Personal training" loading="lazy" />
+        <div class="gallery-hover"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500&q=80" alt="Gym atmosphere" loading="lazy" />
+        <div class="gallery-hover"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?w=500&q=80" alt="Workout" loading="lazy" />
+        <div class="gallery-hover"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ STATS ═══════════════════════════ -->
+<section id="stats" style="padding:0">
+  <div class="stats-grid">
+    <div class="stats-item reveal">
+      <div class="stats-num"><span data-count="1000" class="counter">0</span><span class="stats-plus">+</span></div>
+      <div class="stats-label">Active Members</div>
+    </div>
+    <div class="stats-item reveal">
+      <div class="stats-num"><span data-count="50" class="counter">0</span><span class="stats-plus">+</span></div>
+      <div class="stats-label">Machines & Equipment</div>
+    </div>
+    <div class="stats-item reveal">
+      <div class="stats-num"><span data-count="10" class="counter">0</span><span class="stats-plus">+</span></div>
+      <div class="stats-label">Expert Coaches</div>
+    </div>
+    <div class="stats-item reveal">
+      <div class="stats-num"><span data-count="5" class="counter">0</span><span class="stats-plus">+</span></div>
+      <div class="stats-label">Years of Excellence</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ TESTIMONIALS ═══════════════════════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <div class="section-label" style="justify-content:center">Member Stories</div>
+      <h2 class="section-title">What Our <span class="gold">Members Say</span></h2>
+      <div class="gold-line"></div>
+    </div>
+  </div>
+  <div class="testimonials-wrapper">
+    <div class="testimonials-track" id="testi-track">
+      <!-- 8 cards duplicated for infinite scroll -->
+      <div class="testi-card"><div class="quote-mark">"</div><div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="testi-text">"Physio Slim completely changed my approach to fitness. The coaches here don't just show you exercises — they teach you how to train with purpose. I've lost 18kg in 6 months."</p><div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Ahmed Hassan</div><div class="testi-since">Member since 2023</div></div></div></div>
+      <div class="testi-card"><div class="quote-mark">"</div><div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="testi-text">"The environment here is unlike any gym in Fayoum. It feels premium, the equipment is always clean, and you can see the professionalism in every detail. Worth every penny."</p><div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name">Sara Mohamed</div><div class="testi-since">Member since 2022</div></div></div></div>
+      <div class="testi-card"><div class="quote-mark">"</div><div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="testi-text">"My coach at Physio Slim pushed me in ways I didn't think I could handle — and I reached goals I thought were years away. The InBody scans keep me honest and motivated."</p><div class="testi-author"><div class="testi-avatar">M</div><div><div class="testi-name">Mohamed Ali</div><div class="testi-since">Member since 2024</div></div></div></div>
+      <div class="testi-card"><div class="quote-mark">"</div><div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="testi-text">"I've been to many gyms but Physio Slim stands apart. The Gold membership is incredible value — I get dedicated coach time every session and the progress tracking keeps me accountable."</p><div class="testi-author"><div class="testi-avatar">F</div><div><div class="testi-name">Fatma Khalil</div><div class="testi-since">Member since 2023</div></div></div></div>
+      <div class="testi-card"><div class="quote-mark">"</div><div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="testi-text">"Starting with the Silver plan gave me flexibility without commitment, but after two months I upgraded to Platinum. The unlimited access is worth it — I come every day now."</p><div class="testi-author"><div class="testi-avatar">O</div><div><div class="testi-name">Omar Youssef</div><div class="testi-since">Member since 2024</div></div></div></div>
+      <!-- Duplicate for infinite scroll -->
+      <div class="testi-card"><div class="quote-mark">"</div><div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="testi-text">"Physio Slim completely changed my approach to fitness. The coaches here don't just show you exercises — they teach you how to train with purpose. I've lost 18kg in 6 months."</p><div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Ahmed Hassan</div><div class="testi-since">Member since 2023</div></div></div></div>
+      <div class="testi-card"><div class="quote-mark">"</div><div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="testi-text">"The environment here is unlike any gym in Fayoum. It feels premium, the equipment is always clean, and you can see the professionalism in every detail. Worth every penny."</p><div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name">Sara Mohamed</div><div class="testi-since">Member since 2022</div></div></div></div>
+      <div class="testi-card"><div class="quote-mark">"</div><div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><p class="testi-text">"My coach at Physio Slim pushed me in ways I didn't think I could handle — and I reached goals I thought were years away. The InBody scans keep me honest and motivated."</p><div class="testi-author"><div class="testi-avatar">M</div><div><div class="testi-name">Mohamed Ali</div><div class="testi-since">Member since 2024</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CTA BANNER ═══════════════════════════ -->
+<section id="cta-banner">
+  <div class="cta-banner-inner reveal">
+    <div class="cta-banner-text">
+      <div class="section-label">Start Today</div>
+      <h2>Ready To <span class="gold">Transform?</span></h2>
+      <p>Join over 1,000 members who chose Physio Slim as their path to a stronger, healthier life. Your first step starts with a single message.</p>
+    </div>
+    <div class="cta-banner-buttons">
+      <a href="#memberships" class="btn-gold" style="font-size:13px;padding:18px 40px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        View Memberships
+      </a>
+      <a href="https://wa.me/201023265002?text=Hi! I want to join Physio Slim Health Club" target="_blank" class="btn-outline" style="font-size:13px;padding:18px 40px;border-color:#25d366;color:#25d366">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CONTACT ═══════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:56px">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Visit <span class="gold">Physio Slim</span></h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal left">
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.18 2 2 0 012.08 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91A16 16 0 0016.09 17l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0124 18.18v2.74z"/></svg></div>
+          <div>
+            <div class="contact-label">Phone</div>
+            <div class="contact-value"><a href="tel:01023265002">01023265002</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+          <div>
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-value"><a href="https://wa.me/201023265002" target="_blank">+20 102 326 5002</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></div>
+          <div>
+            <div class="contact-label">Facebook</div>
+            <div class="contact-value"><a href="https://www.facebook.com/physioslimfym" target="_blank">Physio Slim Health Club</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div>
+            <div class="contact-label">Address</div>
+            <div class="contact-value"><a href="https://maps.apple.com/?address=Ahmed%20Shawki%20Street,%20Faiyum,%20Egypt&ll=29.320491,30.841176&q=physio%20slim%20gym" target="_blank">Ahmed Shawki Street, Fayoum, Egypt</a></div>
+          </div>
+        </div>
+        <div class="contact-ctas">
+          <a href="tel:01023265002" class="btn-gold">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.18 2 2 0 012.08 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91A16 16 0 0016.09 17l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0124 18.18v2.74z"/></svg>
+            Call Now
+          </a>
+          <a href="https://wa.me/201023265002" target="_blank" class="btn-outline" style="border-color:#25d366;color:#25d366">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+        <div class="hours-strip">
+          <div class="hours-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span><strong>Sat–Thu</strong> 7:00 AM – 11:00 PM</span>
+          </div>
+          <div class="hours-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span><strong>Friday</strong> 2:00 PM – 11:00 PM</span>
+          </div>
+          <div class="hours-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span><strong>Ahmed Shawki St</strong>, Fayoum</span>
+          </div>
+        </div>
+      </div>
+      <div class="reveal right">
+        <div class="map-wrap">
+          <div class="map-label">📍 Ahmed Shawki St, Fayoum</div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3441.234567!2d30.841176!3d29.320491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDE5JzEzLjgiTiAzMMKwNTAnMjguMiJF!5e0!3m2!1sen!2seg!4v1617000000000!5m2!1sen!2seg"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Physio Slim Health Club location">
+          </iframe>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:12px">
+          <a href="https://maps.apple.com/?address=Ahmed%20Shawki%20Street,%20Faiyum,%20Egypt&ll=29.320491,30.841176&q=physio%20slim%20gym" target="_blank" class="btn-gold" style="flex:1;justify-content:center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Apple Maps
+          </a>
+          <a href="https://www.google.com/maps/search/physio+slim+gym+fayoum/@29.320491,30.841176" target="_blank" class="btn-outline" style="flex:1;justify-content:center">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#hero" class="nav-logo" style="display:inline-flex">
+          <img src="logo.jpg" alt="Physio Slim Health Club" style="width:44px;height:44px;object-fit:contain;" />
+          <div class="nav-logo-text" style="margin-left:12px">PHYSIO SLIM<span>HEALTH CLUB</span></div>
+        </a>
+        <p>Fayoum's premier fitness destination. Where dedication meets excellence and every member's transformation matters.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/physioslimfym" target="_blank" class="social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="https://wa.me/201023265002" target="_blank" class="social-btn" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </a>
+          <a href="tel:01023265002" class="social-btn" aria-label="Phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.18 2 2 0 012.08 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91A16 16 0 0016.09 17l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0124 18.18v2.74z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#memberships">Memberships</a></li>
+          <li><a href="#facilities">Facilities</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-title">Memberships</div>
+        <ul class="footer-links">
+          <li><a href="#memberships">Silver Plan</a></li>
+          <li><a href="#memberships">Gold Plan</a></li>
+          <li><a href="#memberships">Platinum Plan</a></li>
+          <li><a href="#memberships">Session Packages</a></li>
+          <li><a href="#memberships">Unlimited Access</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-title">Contact</div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.1 1.18 2 2 0 012.08 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91A16 16 0 0016.09 17l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0124 18.18v2.74z"/></svg>
+          <a href="tel:01023265002">01023265002</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          <a href="https://wa.me/201023265002" target="_blank">WhatsApp Us</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Ahmed Shawki Street,<br>Fayoum, Egypt</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          <a href="https://www.facebook.com/physioslimfym" target="_blank">physioslimfym</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 <span class="gold">Physio Slim Health Club</span>. All rights reserved. Fayoum, Egypt.</p>
+      <p style="font-size:11px;color:rgba(160,160,160,0.4)">Transform Your Body. Build Your Strength. Unlock Your Potential.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── LOADER ──
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 2000);
+});
+
+// ── SCROLL HANDLER ──
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+
+  // Progress bar
+  document.getElementById('scroll-bar').style.width = ((scrollTop / docHeight) * 100) + '%';
+
+  // Navbar
+  document.getElementById('navbar').classList.toggle('scrolled', scrollTop > 50);
+
+  // Back to top
+  document.getElementById('back-top').classList.toggle('visible', scrollTop > 500);
+
+  // Parallax on hero bg
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) heroBg.style.transform = `scale(1.05) translateY(${scrollTop * 0.25}px)`;
+}, { passive: true });
+
+// ── MOBILE MENU ──
+document.getElementById('menu-toggle').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+document.getElementById('close-menu').addEventListener('click', closeMobile);
+function closeMobile() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── MEMBERSHIP TABS ──
+document.querySelectorAll('.plan-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.plan-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.plan-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    const panel = document.getElementById('tab-' + tab.dataset.tab);
+    if (panel) {
+      panel.classList.add('active');
+      // Re-observe new cards for reveal
+      panel.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+        el.classList.add('visible');
+      });
+    }
+  });
+});
+
+// ── SCROLL REVEAL ──
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── COUNT-UP ANIMATION ──
+function animateCount(el, target, duration = 2200) {
+  const start = performance.now();
+  const update = (time) => {
+    const progress = Math.min((time - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target).toLocaleString();
+    if (progress < 1) requestAnimationFrame(update);
+    else el.textContent = target.toLocaleString();
+  };
+  requestAnimationFrame(update);
+}
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      animateCount(el, parseInt(el.dataset.count));
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+// ── GALLERY LIGHTBOX ──
+const galleryImages = [];
+document.querySelectorAll('.gallery-item img').forEach((img, i) => {
+  galleryImages.push({ src: img.src, alt: img.alt });
+  img.parentElement.addEventListener('click', () => openLightbox(i));
+  img.parentElement.style.cursor = 'pointer';
+});
+
+let currentLightbox = 0;
+function openLightbox(index) {
+  currentLightbox = index;
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const caption = document.getElementById('lightbox-caption');
+  lbImg.src = galleryImages[index].src;
+  lbImg.alt = galleryImages[index].alt;
+  caption.textContent = (index + 1) + ' / ' + galleryImages.length;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lightboxNav(dir) {
+  currentLightbox = (currentLightbox + dir + galleryImages.length) % galleryImages.length;
+  openLightbox(currentLightbox);
+}
+document.getElementById('lightbox').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+});
+document.addEventListener('keydown', (e) => {
+  const lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lightboxNav(-1);
+  if (e.key === 'ArrowRight') lightboxNav(1);
+});
+
+// ── TESTIMONIALS INFINITE SCROLL DUPLICATE ──
+const track = document.getElementById('testi-track');
+if (track) {
+  track.innerHTML += track.innerHTML;
+}
+
+// ── TOAST on WA links ──
+document.querySelectorAll('.btn-plan-wa').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  });
+});
+
+// ── LANGUAGE TOGGLE ──
+const translations = {
+  en: {
+    // Navbar
+    'nav-home': 'Home', 'nav-memberships': 'Memberships', 'nav-facilities': 'Facilities',
+    'nav-gallery': 'Gallery', 'nav-reviews': 'Reviews', 'nav-contact': 'Contact',
+    'nav-join': 'Join Now',
+    // Loader
+    'loader-tagline': 'PREMIUM FITNESS • FAYOUM',
+    // Hero
+    'hero-badge': 'Premium Fitness • Fayoum, Egypt',
+    'hero-sub': 'Premium Fitness Experience In Fayoum',
+    'hero-desc': 'Transform Your Body. Build Your Strength.<br>Unlock Your Potential.',
+    'hero-btn-join': 'Join Now', 'hero-btn-wa': 'WhatsApp Us',
+    'hero-t1': 'Transform', 'hero-t2': 'Build', 'hero-t3': 'Unlock',
+    'scroll-text': 'Scroll',
+    // About
+    'about-label': 'Our Story', 'about-title': 'About', 'about-gold': 'Physio Slim',
+    'about-badge-years': 'Years',
+    'about-p1': 'Physio Slim Health Club provides a premium fitness environment with professional coaching, advanced equipment, and a motivating atmosphere designed to help members achieve their goals. Located in the heart of Fayoum, we are committed to delivering a world-class fitness experience that combines science-backed training with personalized support.',
+    'about-p2': "Whether you're starting your fitness journey or pushing to elite performance, our expert coaches and state-of-the-art facilities are here to help you transform. Every session, every rep, every drop of sweat — we're with you.",
+    'stat-members': 'Active Members', 'stat-coaches': 'Expert Coaches',
+    'stat-machines': 'Machines & Equipment', 'stat-years': 'Years of Excellence',
+    // Memberships
+    'mem-label': 'Pricing Plans', 'mem-title': 'Choose Your', 'mem-gold': 'Membership',
+    'mem-desc': 'Flexible plans designed for every fitness level and commitment. Invest in yourself today.',
+    'tab-silver': 'Silver', 'tab-gold': 'Gold', 'tab-platinum': 'Platinum',
+    'feature-access': 'Access to All Equipment', 'feature-coach': 'Coach Guidance',
+    'feature-locker': 'Locker Room Access', 'feature-priority': 'Priority Booking',
+    'feature-full-access': 'Full Equipment Access', 'feature-dedicated': 'Dedicated Coach',
+    'feature-nutrition': 'Nutrition Guidance', 'feature-vip': 'VIP Coach Support',
+    'feature-progress': 'Progress Tracking', 'feature-inbody': 'InBody Analysis',
+    'feature-elite': 'Elite Coach Program', 'feature-monthly-inbody': 'Monthly InBody Analysis',
+    'feature-unlimited': 'Unlimited Access — 30 Days', 'feature-unlimited90': 'Unlimited Access — 90 Days',
+    'feature-unlimited180': 'Unlimited Access — 180 Days', 'feature-unlimited-year': 'Unlimited Access — Full Year',
+    'feature-all': 'All Equipment & Classes', 'feature-personal': 'Personal Coach Access',
+    'feature-scan': 'InBody Scan Included', 'feature-dedicated2': 'Dedicated Personal Coach',
+    'feature-monthly2': 'Monthly InBody Analysis', 'feature-elite2': 'Elite Personal Coach',
+    'feature-bi': 'Bi-Monthly InBody Analysis', 'feature-year-coach': 'Year-Round Elite Coaching',
+    'feature-quarterly': 'Quarterly InBody Analysis',
+    'btn-join': 'Join Now', 'btn-whatsapp': 'WhatsApp',
+    // Why
+    'why-label': 'Our Advantage', 'why-title': 'Why Choose', 'why-gold': 'Us',
+    'why1-title': 'Professional Coaches', 'why1-desc': 'Our certified coaches bring expertise and passion to every session, designing personalized programs that drive real, measurable results.',
+    'why2-title': 'Modern Equipment', 'why2-desc': 'State-of-the-art machinery and free weights sourced from leading manufacturers, maintained to the highest standards for safe and effective training.',
+    'why3-title': 'Motivating Environment', 'why3-desc': 'A high-energy atmosphere designed to push boundaries and inspire peak performance, every single visit.',
+    'why4-title': 'Flexible Memberships', 'why4-desc': 'Silver, Gold, and Platinum tiers with session-based or unlimited plans — built to fit your lifestyle and fitness goals.',
+    'why5-title': 'Personal Support', 'why5-desc': 'Ongoing guidance beyond the gym floor — WhatsApp support, progress check-ins, and nutrition tips from our team.',
+    'why6-title': 'Results-Driven Training', 'why6-desc': 'Every program is built around measurable outcomes. InBody analysis, progress tracking, and adaptive training ensure you always move forward.',
+    // Facilities
+    'fac-label': 'World-Class Space', 'fac-title': 'Our', 'fac-gold': 'Facilities',
+    'fac1-name': 'Strength Training', 'fac1-desc': 'Full range of barbells, squat racks, and cable machines for complete strength development.',
+    'fac2-name': 'Cardio Area', 'fac2-desc': 'Treadmills, bikes, and elliptical machines for high-performance cardio training.',
+    'fac3-name': 'Free Weights', 'fac3-desc': 'Comprehensive dumbbell range and Olympic free weight stations for isolated muscle development.',
+    'fac4-name': 'Functional Training', 'fac4-desc': 'Battle ropes, kettlebells, and plyometric platforms for athletic performance enhancement.',
+    'fac5-name': 'InBody Analysis', 'fac5-desc': 'Professional body composition scanning to track muscle, fat, and hydration levels precisely.',
+    'fac6-name': 'Personal Coaching', 'fac6-desc': '1-on-1 sessions with certified coaches who design programs tailored to your exact goals.',
+    // Gallery
+    'gal-label': 'The Experience', 'gal-title': 'Inside', 'gal-gold': 'Physio Slim',
+    // Stats
+    'stats-members': 'Active Members', 'stats-machines': 'Machines & Equipment',
+    'stats-coaches': 'Expert Coaches', 'stats-years': 'Years of Excellence',
+    // Testimonials
+    'testi-label': 'Member Stories', 'testi-title': 'What Our', 'testi-gold': 'Members Say',
+    'testi-since': 'Member since',
+    // CTA Banner
+    'cta-label': 'Start Today', 'cta-title': 'Ready To', 'cta-gold': 'Transform?',
+    'cta-desc': 'Join over 1,000 members who chose Physio Slim as their path to a stronger, healthier life. Your first step starts with a single message.',
+    'cta-btn1': 'View Memberships', 'cta-btn2': 'Chat on WhatsApp',
+    // Contact
+    'con-label': 'Get In Touch', 'con-title': 'Visit', 'con-gold': 'Physio Slim',
+    'con-phone-label': 'Phone', 'con-wa-label': 'WhatsApp', 'con-fb-label': 'Facebook', 'con-addr-label': 'Address',
+    'con-addr': 'Ahmed Shawki Street, Fayoum, Egypt',
+    'con-btn-call': 'Call Now', 'con-btn-wa': 'WhatsApp',
+    'hours-sat': 'Sat–Thu', 'hours-fri': 'Friday', 'hours-loc': 'Ahmed Shawki St',
+    'map-label': '📍 Ahmed Shawki St, Fayoum',
+    'map-apple': 'Apple Maps', 'map-google': 'Google Maps',
+    // Footer
+    'footer-desc': "Fayoum's premier fitness destination. Where dedication meets excellence and every member's transformation matters.",
+    'footer-links-title': 'Quick Links', 'footer-mem-title': 'Memberships', 'footer-con-title': 'Contact',
+    'footer-home': 'Home', 'footer-about': 'About Us', 'footer-mem': 'Memberships',
+    'footer-fac': 'Facilities', 'footer-gal': 'Gallery', 'footer-contact': 'Contact',
+    'footer-silver': 'Silver Plan', 'footer-gold': 'Gold Plan', 'footer-platinum': 'Platinum Plan',
+    'footer-sessions': 'Session Packages', 'footer-unlimited': 'Unlimited Access',
+    'footer-wa': 'WhatsApp Us', 'footer-addr': 'Ahmed Shawki Street,<br>Fayoum, Egypt',
+    'footer-copy': '© 2025 <span class="gold">Physio Slim Health Club</span>. All rights reserved. Fayoum, Egypt.',
+    'footer-tagline': 'Transform Your Body. Build Your Strength. Unlock Your Potential.',
+    'toast-msg': 'Opening WhatsApp...',
+    'lang-btn': 'عربي',
+  },
+  ar: {
+    'nav-home': 'الرئيسية', 'nav-memberships': 'الاشتراكات', 'nav-facilities': 'المرافق',
+    'nav-gallery': 'المعرض', 'nav-reviews': 'التقييمات', 'nav-contact': 'تواصل معنا',
+    'nav-join': 'انضم الآن',
+    'loader-tagline': 'لياقة بدنية متميزة • الفيوم',
+    'hero-badge': 'لياقة بدنية متميزة • الفيوم، مصر',
+    'hero-sub': 'تجربة لياقة بدنية متميزة في الفيوم',
+    'hero-desc': 'حوّل جسدك. ابنِ قوتك.<br>أطلق إمكاناتك.',
+    'hero-btn-join': 'انضم الآن', 'hero-btn-wa': 'تواصل عبر واتساب',
+    'hero-t1': 'تحويل', 'hero-t2': 'بناء', 'hero-t3': 'إطلاق',
+    'scroll-text': 'للأسفل',
+    'about-label': 'قصتنا', 'about-title': 'عن', 'about-gold': 'فيزيو سليم',
+    'about-badge-years': 'سنوات',
+    'about-p1': 'نادي فيزيو سليم الصحي يوفر بيئة لياقة بدنية متميزة مع تدريب احترافي وأجهزة متطورة وأجواء تحفيزية مصممة لمساعدة الأعضاء على تحقيق أهدافهم. يقع في قلب الفيوم، ونحن ملتزمون بتقديم تجربة لياقة بدنية على مستوى عالمي تجمع بين التدريب المبني على الأدلة العلمية والدعم الشخصي.',
+    'about-p2': 'سواء كنت تبدأ رحلتك في اللياقة البدنية أو تسعى للوصول إلى الأداء المتميز، فإن مدربينا الخبراء ومرافقنا المتطورة هنا لمساعدتك على التحول. كل جلسة، كل تكرار، كل قطرة عرق — نحن معك.',
+    'stat-members': 'عضو نشط', 'stat-coaches': 'مدرب خبير',
+    'stat-machines': 'جهاز ومعدة', 'stat-years': 'سنوات من التميز',
+    'mem-label': 'خطط الأسعار', 'mem-title': 'اختر', 'mem-gold': 'اشتراكك',
+    'mem-desc': 'خطط مرنة مصممة لكل مستوى لياقة وكل التزام. استثمر في نفسك اليوم.',
+    'tab-silver': 'فضي', 'tab-gold': 'ذهبي', 'tab-platinum': 'بلاتيني',
+    'feature-access': 'الوصول لجميع الأجهزة', 'feature-coach': 'إرشاد المدرب',
+    'feature-locker': 'الوصول لغرفة الملابس', 'feature-priority': 'الحجز المميز',
+    'feature-full-access': 'الوصول الكامل للأجهزة', 'feature-dedicated': 'مدرب مخصص',
+    'feature-nutrition': 'إرشاد التغذية', 'feature-vip': 'دعم مدرب VIP',
+    'feature-progress': 'تتبع التقدم', 'feature-inbody': 'تحليل InBody',
+    'feature-elite': 'برنامج المدرب المتميز', 'feature-monthly-inbody': 'تحليل InBody شهري',
+    'feature-unlimited': 'وصول غير محدود — 30 يوم', 'feature-unlimited90': 'وصول غير محدود — 90 يوم',
+    'feature-unlimited180': 'وصول غير محدود — 180 يوم', 'feature-unlimited-year': 'وصول غير محدود — سنة كاملة',
+    'feature-all': 'جميع الأجهزة والفصول', 'feature-personal': 'الوصول لمدرب شخصي',
+    'feature-scan': 'فحص InBody مشمول', 'feature-dedicated2': 'مدرب شخصي مخصص',
+    'feature-monthly2': 'تحليل InBody شهري', 'feature-elite2': 'مدرب شخصي متميز',
+    'feature-bi': 'تحليل InBody كل شهرين', 'feature-year-coach': 'تدريب متميز طوال العام',
+    'feature-quarterly': 'تحليل InBody ربع سنوي',
+    'btn-join': 'انضم الآن', 'btn-whatsapp': 'واتساب',
+    'why-label': 'ميزتنا', 'why-title': 'لماذا تختار', 'why-gold': 'نادينا',
+    'why1-title': 'مدربون محترفون', 'why1-desc': 'يجلب مدربونا المعتمدون الخبرة والشغف لكل جلسة، ويصممون برامج شخصية تحقق نتائج حقيقية وقابلة للقياس.',
+    'why2-title': 'أجهزة حديثة', 'why2-desc': 'أجهزة متطورة وأوزان حرة من كبار الشركات المصنعة، يتم صيانتها وفق أعلى المعايير لضمان تدريب آمن وفعال.',
+    'why3-title': 'بيئة تحفيزية', 'why3-desc': 'أجواء عالية الطاقة مصممة لتجاوز الحدود وإلهام الأداء الأمثل في كل زيارة.',
+    'why4-title': 'اشتراكات مرنة', 'why4-desc': 'مستويات فضي وذهبي وبلاتيني مع خطط قائمة على الجلسات أو غير محدودة — مصممة لتناسب أسلوب حياتك وأهدافك.',
+    'why5-title': 'دعم شخصي', 'why5-desc': 'إرشاد مستمر خارج قاعة النادي — دعم عبر واتساب، ومتابعة التقدم، ونصائح التغذية من فريقنا.',
+    'why6-title': 'تدريب موجه للنتائج', 'why6-desc': 'كل برنامج مبني حول نتائج قابلة للقياس. تحليل InBody، وتتبع التقدم، والتدريب التكيفي يضمنان تقدمك دائماً.',
+    'fac-label': 'مساحة على مستوى عالمي', 'fac-title': 'مرافقنا', 'fac-gold': 'المتميزة',
+    'fac1-name': 'تدريب القوة', 'fac1-desc': 'مجموعة كاملة من البار وحوامل القرفصاء وأجهزة الكابل لتطوير القوة الكاملة.',
+    'fac2-name': 'منطقة الكارديو', 'fac2-desc': 'سيور المشي والدراجات والأجهزة الإهليلجية لتدريب الكارديو عالي الأداء.',
+    'fac3-name': 'الأوزان الحرة', 'fac3-desc': 'مجموعة شاملة من الدمبلز ومحطات الأوزان الأولمبية لتطوير العضلات بشكل منفصل.',
+    'fac4-name': 'التدريب الوظيفي', 'fac4-desc': 'حبال المعركة والكيتل بيل ومنصات البليومترك لتعزيز الأداء الرياضي.',
+    'fac5-name': 'تحليل InBody', 'fac5-desc': 'مسح احترافي لتكوين الجسم لتتبع مستويات العضلات والدهون والترطيب بدقة.',
+    'fac6-name': 'التدريب الشخصي', 'fac6-desc': 'جلسات فردية مع مدربين معتمدين يصممون برامج مخصصة لأهدافك الدقيقة.',
+    'gal-label': 'التجربة', 'gal-title': 'داخل', 'gal-gold': 'فيزيو سليم',
+    'stats-members': 'عضو نشط', 'stats-machines': 'جهاز ومعدة',
+    'stats-coaches': 'مدرب خبير', 'stats-years': 'سنوات من التميز',
+    'testi-label': 'قصص الأعضاء', 'testi-title': 'ماذا يقول', 'testi-gold': 'أعضاؤنا',
+    'testi-since': 'عضو منذ',
+    'cta-label': 'ابدأ اليوم', 'cta-title': 'هل أنت مستعد لـ', 'cta-gold': 'التحول؟',
+    'cta-desc': 'انضم لأكثر من 1,000 عضو اختاروا فيزيو سليم طريقاً نحو حياة أقوى وأكثر صحة. خطوتك الأولى تبدأ برسالة واحدة.',
+    'cta-btn1': 'عرض الاشتراكات', 'cta-btn2': 'تحدث عبر واتساب',
+    'con-label': 'تواصل معنا', 'con-title': 'زوروا', 'con-gold': 'فيزيو سليم',
+    'con-phone-label': 'الهاتف', 'con-wa-label': 'واتساب', 'con-fb-label': 'فيسبوك', 'con-addr-label': 'العنوان',
+    'con-addr': 'شارع أحمد شوقي، الفيوم، مصر',
+    'con-btn-call': 'اتصل الآن', 'con-btn-wa': 'واتساب',
+    'hours-sat': 'السبت–الخميس', 'hours-fri': 'الجمعة', 'hours-loc': 'ش. أحمد شوقي',
+    'map-label': '📍 ش. أحمد شوقي، الفيوم',
+    'map-apple': 'خرائط آبل', 'map-google': 'خرائط جوجل',
+    'footer-desc': 'الوجهة الرياضية الأولى في الفيوم. حيث يلتقي الإخلاص بالتميز وتهمّ تحولات كل عضو.',
+    'footer-links-title': 'روابط سريعة', 'footer-mem-title': 'الاشتراكات', 'footer-con-title': 'تواصل معنا',
+    'footer-home': 'الرئيسية', 'footer-about': 'من نحن', 'footer-mem': 'الاشتراكات',
+    'footer-fac': 'المرافق', 'footer-gal': 'المعرض', 'footer-contact': 'تواصل معنا',
+    'footer-silver': 'الخطة الفضية', 'footer-gold': 'الخطة الذهبية', 'footer-platinum': 'الخطة البلاتينية',
+    'footer-sessions': 'باقات الجلسات', 'footer-unlimited': 'وصول غير محدود',
+    'footer-wa': 'تواصل عبر واتساب', 'footer-addr': 'شارع أحمد شوقي،<br>الفيوم، مصر',
+    'footer-copy': '© 2025 <span class="gold">نادي فيزيو سليم الصحي</span>. جميع الحقوق محفوظة. الفيوم، مصر.',
+    'footer-tagline': 'حوّل جسدك. ابنِ قوتك. أطلق إمكاناتك.',
+    'toast-msg': 'جاري فتح واتساب...',
+    'lang-btn': 'EN',
+  }
+};
+
+let currentLang = 'en';
+
+function applyTranslations(lang) {
+  const t = translations[lang];
+  const isAr = lang === 'ar';
+
+  // Update html lang and dir
+  document.documentElement.lang = isAr ? 'ar' : 'en';
+  document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+
+  // Add/remove RTL font
+  if (isAr) {
+    if (!document.getElementById('ar-font')) {
+      const link = document.createElement('link');
+      link.id = 'ar-font';
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap';
+      document.head.appendChild(link);
+    }
+    document.body.style.fontFamily = "'Cairo', sans-serif";
+  } else {
+    document.body.style.fontFamily = '';
+  }
+
+  // Helper to set text
+  const setText = (sel, key, isHTML = false) => {
+    const el = document.querySelector(sel);
+    if (el && t[key] !== undefined) { isHTML ? el.innerHTML = t[key] : el.textContent = t[key]; }
+  };
+  const setAll = (sel, key) => {
+    document.querySelectorAll(sel).forEach(el => { if (t[key] !== undefined) el.textContent = t[key]; });
+  };
+
+  // Lang buttons
+  document.querySelectorAll('#lang-toggle, #lang-toggle-mobile').forEach(b => { if (b) b.textContent = t['lang-btn']; });
+
+  // Navbar links
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const navKeys = ['nav-home','nav-memberships','nav-facilities','nav-gallery','nav-reviews','nav-contact'];
+  navLinks.forEach((a, i) => { if (navKeys[i] && t[navKeys[i]]) a.textContent = t[navKeys[i]]; });
+  document.querySelectorAll('.nav-cta, [data-en]').forEach(el => {
+    const key = isAr ? el.dataset.ar : el.dataset.en;
+    if (key) el.textContent = key;
+  });
+
+  // Mobile menu links
+  const mobileLinks = document.querySelectorAll('#mobile-menu a:not([style*="color:#D4AF37"])');
+  mobileLinks.forEach((a, i) => { if (navKeys[i] && t[navKeys[i]]) a.textContent = t[navKeys[i]]; });
+  const mobileJoin = document.querySelector('#mobile-menu a[style*="D4AF37"]');
+  if (mobileJoin) mobileJoin.textContent = t['nav-join'] + ' ↗';
+
+  // Loader
+  const loaderTag = document.querySelector('.loader-tagline');
+  if (loaderTag) loaderTag.textContent = t['loader-tagline'];
+
+  // Hero
+  setText('.hero-badge', 'hero-badge');
+  setText('.hero-sub', 'hero-sub');
+  const heroDesc = document.querySelector('.hero-content > p');
+  if (heroDesc) heroDesc.innerHTML = t['hero-desc'];
+  // Hero buttons text
+  const heroBtns = document.querySelectorAll('.hero-buttons a');
+  if (heroBtns[0]) heroBtns[0].childNodes[heroBtns[0].childNodes.length-1].textContent = ' ' + t['hero-btn-join'];
+  if (heroBtns[1]) heroBtns[1].childNodes[heroBtns[1].childNodes.length-1].textContent = ' ' + t['hero-btn-wa'];
+  // Hero tagline
+  const taglineSpans = document.querySelectorAll('.hero-tagline span:not([style])');
+  const taglineKeys = ['hero-t1','hero-t2','hero-t3'];
+  taglineSpans.forEach((s,i) => { if (taglineKeys[i]) s.textContent = t[taglineKeys[i]]; });
+  setText('.scroll-indicator span', 'scroll-text');
+
+  // About
+  setText('#about .section-label', 'about-label');
+  const aboutTitle = document.querySelector('#about .section-title');
+  if (aboutTitle) aboutTitle.innerHTML = t['about-title'] + ' <span class="gold">' + t['about-gold'] + '</span>';
+  const aboutBadge = document.querySelector('.about-img-badge small');
+  if (aboutBadge) aboutBadge.textContent = t['about-badge-years'];
+  const aboutDescs = document.querySelectorAll('.about-desc');
+  if (aboutDescs[0]) aboutDescs[0].textContent = t['about-p1'];
+  if (aboutDescs[1]) aboutDescs[1].textContent = t['about-p2'];
+  // About stats
+  const statLabels = document.querySelectorAll('#about .stat-label');
+  const statKeys = ['stat-members','stat-coaches','stat-machines','stat-years'];
+  statLabels.forEach((el,i) => { if (statKeys[i] && t[statKeys[i]]) el.textContent = t[statKeys[i]]; });
+
+  // Memberships
+  const memHeader = document.querySelector('.plans-header');
+  if (memHeader) {
+    memHeader.querySelector('.section-label').textContent = t['mem-label'];
+    memHeader.querySelector('.section-title').innerHTML = t['mem-title'] + ' <span class="gold">' + t['mem-gold'] + '</span>';
+    const p = memHeader.querySelector('p');
+    if (p) p.textContent = t['mem-desc'];
+  }
+  const planTabs = document.querySelectorAll('.plan-tab');
+  ['tab-silver','tab-gold','tab-platinum'].forEach((k,i) => { if (planTabs[i] && t[k]) planTabs[i].textContent = t[k]; });
+
+  // All "Join Now" plan buttons
+  document.querySelectorAll('.btn-plan-gold').forEach(b => { b.textContent = t['btn-join']; });
+  document.querySelectorAll('.btn-plan-wa').forEach(b => {
+    b.innerHTML = b.querySelector('svg') ? b.querySelector('svg').outerHTML + t['btn-whatsapp'] : t['btn-whatsapp'];
+  });
+
+  // Plan features - map by content
+  const featureMap = {
+    'Access to All Equipment': t['feature-access'], 'Coach Guidance': t['feature-coach'],
+    'Locker Room Access': t['feature-locker'], 'Priority Booking': t['feature-priority'],
+    'Full Equipment Access': t['feature-full-access'], 'Dedicated Coach': t['feature-dedicated'],
+    'Nutrition Guidance': t['feature-nutrition'], 'VIP Coach Support': t['feature-vip'],
+    'Progress Tracking': t['feature-progress'], 'InBody Analysis': t['feature-inbody'],
+    'Elite Coach Program': t['feature-elite'], 'Monthly InBody Analysis': t['feature-monthly-inbody'],
+    'Unlimited Access — 30 Days': t['feature-unlimited'], 'Unlimited Access — 90 Days': t['feature-unlimited90'],
+    'Unlimited Access — 180 Days': t['feature-unlimited180'], 'Unlimited Access — Full Year': t['feature-unlimited-year'],
+    'All Equipment & Classes': t['feature-all'], 'Personal Coach Access': t['feature-personal'],
+    'InBody Scan Included': t['feature-scan'], 'Dedicated Personal Coach': t['feature-dedicated2'],
+    'Bi-Monthly InBody Analysis': t['feature-bi'], 'Elite Personal Coach': t['feature-elite2'],
+    'Year-Round Elite Coaching': t['feature-year-coach'], 'Quarterly InBody Analysis': t['feature-quarterly'],
+    '12 Training Sessions': isAr ? '١٢ جلسة تدريب' : '12 Training Sessions',
+    '36 Training Sessions': isAr ? '٣٦ جلسة تدريب' : '36 Training Sessions',
+    '72 Training Sessions': isAr ? '٧٢ جلسة تدريب' : '72 Training Sessions',
+    '144 Training Sessions': isAr ? '١٤٤ جلسة تدريب' : '144 Training Sessions',
+    '8 Training Sessions': isAr ? '٨ جلسات تدريب' : '8 Training Sessions',
+    '24 Training Sessions': isAr ? '٢٤ جلسة تدريب' : '24 Training Sessions',
+    '48 Training Sessions': isAr ? '٤٨ جلسة تدريب' : '48 Training Sessions',
+    '96 Training Sessions': isAr ? '٩٦ جلسة تدريب' : '96 Training Sessions',
+    '1 Month Unlimited': isAr ? 'شهر غير محدود' : '1 Month Unlimited',
+    '3 Months Unlimited': isAr ? '٣ أشهر غير محدودة' : '3 Months Unlimited',
+    '6 Months Unlimited': isAr ? '٦ أشهر غير محدودة' : '6 Months Unlimited',
+    '12 Months Unlimited': isAr ? '١٢ شهراً غير محدوداً' : '12 Months Unlimited',
+  };
+  document.querySelectorAll('.plan-feature').forEach(el => {
+    const svg = el.querySelector('svg');
+    const text = el.textContent.trim();
+    if (featureMap[text]) el.innerHTML = (svg ? svg.outerHTML : '') + featureMap[text];
+  });
+  document.querySelectorAll('.plan-sessions').forEach(el => {
+    const text = el.textContent.trim();
+    if (featureMap[text]) el.textContent = featureMap[text];
+  });
+
+  // Why
+  const whySec = document.getElementById('why');
+  if (whySec) {
+    whySec.querySelector('.section-label').textContent = t['why-label'];
+    whySec.querySelector('.section-title').innerHTML = t['why-title'] + ' <span class="gold">' + t['why-gold'] + '</span>';
+    const cards = whySec.querySelectorAll('.why-card');
+    const whyKeys = [['why1-title','why1-desc'],['why2-title','why2-desc'],['why3-title','why3-desc'],
+                     ['why4-title','why4-desc'],['why5-title','why5-desc'],['why6-title','why6-desc']];
+    cards.forEach((card,i) => {
+      if (whyKeys[i]) {
+        card.querySelector('.why-title').textContent = t[whyKeys[i][0]];
+        card.querySelector('.why-desc').textContent = t[whyKeys[i][1]];
+      }
+    });
+  }
+
+  // Facilities
+  const facSec = document.getElementById('facilities');
+  if (facSec) {
+    facSec.querySelector('.section-label').textContent = t['fac-label'];
+    facSec.querySelector('.section-title').innerHTML = t['fac-title'] + ' <span class="gold">' + t['fac-gold'] + '</span>';
+    const cards = facSec.querySelectorAll('.facility-card');
+    const facKeys = [['fac1-name','fac1-desc'],['fac2-name','fac2-desc'],['fac3-name','fac3-desc'],
+                     ['fac4-name','fac4-desc'],['fac5-name','fac5-desc'],['fac6-name','fac6-desc']];
+    cards.forEach((card,i) => {
+      if (facKeys[i]) {
+        const name = card.querySelector('.facility-name');
+        const desc = card.querySelector('.facility-desc');
+        if (name) name.textContent = t[facKeys[i][0]];
+        if (desc) desc.textContent = t[facKeys[i][1]];
+      }
+    });
+  }
+
+  // Gallery
+  const galSec = document.getElementById('gallery');
+  if (galSec) {
+    galSec.querySelector('.section-label').textContent = t['gal-label'];
+    galSec.querySelector('.section-title').innerHTML = t['gal-title'] + ' <span class="gold">' + t['gal-gold'] + '</span>';
+  }
+
+  // Stats section
+  const statsSec = document.getElementById('stats');
+  if (statsSec) {
+    const labels = statsSec.querySelectorAll('.stats-label');
+    ['stats-members','stats-machines','stats-coaches','stats-years'].forEach((k,i) => {
+      if (labels[i] && t[k]) labels[i].textContent = t[k];
+    });
+  }
+
+  // Testimonials
+  const testiSec = document.getElementById('testimonials');
+  if (testiSec) {
+    testiSec.querySelector('.section-label').textContent = t['testi-label'];
+    testiSec.querySelector('.section-title').innerHTML = t['testi-title'] + ' <span class="gold">' + t['testi-gold'] + '</span>';
+    testiSec.querySelectorAll('.testi-since').forEach(el => { el.textContent = t['testi-since'] + ' ' + el.textContent.replace(/Member since |عضو منذ /,''); });
+  }
+
+  // CTA Banner
+  const ctaSec = document.getElementById('cta-banner');
+  if (ctaSec) {
+    ctaSec.querySelector('.section-label').textContent = t['cta-label'];
+    ctaSec.querySelector('h2').innerHTML = t['cta-title'] + ' <span class="gold">' + t['cta-gold'] + '</span>';
+    ctaSec.querySelector('p').textContent = t['cta-desc'];
+    const btns = ctaSec.querySelectorAll('a');
+    if (btns[0]) btns[0].childNodes[btns[0].childNodes.length-1].textContent = ' ' + t['cta-btn1'];
+    if (btns[1]) btns[1].childNodes[btns[1].childNodes.length-1].textContent = ' ' + t['cta-btn2'];
+  }
+
+  // Contact
+  const conSec = document.getElementById('contact');
+  if (conSec) {
+    conSec.querySelector('.section-label').textContent = t['con-label'];
+    conSec.querySelector('.section-title').innerHTML = t['con-title'] + ' <span class="gold">' + t['con-gold'] + '</span>';
+    const labels = conSec.querySelectorAll('.contact-label');
+    ['con-phone-label','con-wa-label','con-fb-label','con-addr-label'].forEach((k,i) => {
+      if (labels[i] && t[k]) labels[i].textContent = t[k];
+    });
+    const addrVal = conSec.querySelector('.contact-value a[href*="maps.apple"]');
+    if (addrVal) addrVal.textContent = t['con-addr'];
+    const conBtns = conSec.querySelectorAll('.contact-ctas a');
+    if (conBtns[0]) conBtns[0].childNodes[conBtns[0].childNodes.length-1].textContent = ' ' + t['con-btn-call'];
+    if (conBtns[1]) conBtns[1].childNodes[conBtns[1].childNodes.length-1].textContent = ' ' + t['con-btn-wa'];
+    // Hours
+    const hoursItems = conSec.querySelectorAll('.hours-item span');
+    if (hoursItems[0]) hoursItems[0].innerHTML = '<strong>' + t['hours-sat'] + '</strong> 7:00 AM – 11:00 PM';
+    if (hoursItems[1]) hoursItems[1].innerHTML = '<strong>' + t['hours-fri'] + '</strong> 2:00 PM – 11:00 PM';
+    if (hoursItems[2]) hoursItems[2].innerHTML = '<strong>' + t['hours-loc'] + '</strong>, ' + (isAr ? 'الفيوم' : 'Fayoum');
+    const mapLabel = conSec.querySelector('.map-label');
+    if (mapLabel) mapLabel.textContent = t['map-label'];
+    const mapBtns = conSec.querySelectorAll('.map-wrap + div a');
+    if (mapBtns[0]) mapBtns[0].childNodes[mapBtns[0].childNodes.length-1].textContent = ' ' + t['map-apple'];
+    if (mapBtns[1]) mapBtns[1].childNodes[mapBtns[1].childNodes.length-1].textContent = ' ' + t['map-google'];
+  }
+
+  // Footer
+  const footer = document.querySelector('footer');
+  if (footer) {
+    const footerBrandP = footer.querySelector('.footer-brand p');
+    if (footerBrandP) footerBrandP.textContent = t['footer-desc'];
+    const footerTitles = footer.querySelectorAll('.footer-title');
+    ['footer-links-title','footer-mem-title','footer-con-title'].forEach((k,i) => {
+      if (footerTitles[i] && t[k]) footerTitles[i].textContent = t[k];
+    });
+    const footerLinksList1 = footer.querySelectorAll('div:nth-child(2) .footer-links li a');
+    ['footer-home','footer-about','footer-mem','footer-fac','footer-gal','footer-contact'].forEach((k,i) => {
+      if (footerLinksList1[i] && t[k]) footerLinksList1[i].textContent = t[k];
+    });
+    const footerLinksList2 = footer.querySelectorAll('div:nth-child(3) .footer-links li a');
+    ['footer-silver','footer-gold','footer-platinum','footer-sessions','footer-unlimited'].forEach((k,i) => {
+      if (footerLinksList2[i] && t[k]) footerLinksList2[i].textContent = t[k];
+    });
+    const footerWa = footer.querySelector('.footer-contact-item a[href*="wa.me"]');
+    if (footerWa) footerWa.textContent = t['footer-wa'];
+    const footerAddr = footer.querySelector('.footer-contact-item span');
+    if (footerAddr) footerAddr.innerHTML = t['footer-addr'];
+    const copyP = footer.querySelector('.footer-bottom p:first-child');
+    if (copyP) copyP.innerHTML = t['footer-copy'];
+    const taglineP = footer.querySelector('.footer-bottom p:last-child');
+    if (taglineP) taglineP.textContent = t['footer-tagline'];
+  }
+}
+
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'ar' : 'en';
+  applyTranslations(currentLang);
+}
+
+// ── ACTIVE NAV LINK ON SCROLL ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === '#' + id ? 'var(--gold)' : '';
+      });
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => sectionObserver.observe(s));
+</script>
+</body>
+</html>
