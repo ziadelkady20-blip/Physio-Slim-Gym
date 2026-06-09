@@ -28,6 +28,17 @@
   [dir="rtl"] .hero-tagline { direction: rtl; }
   [dir="rtl"] #mobile-menu { direction: rtl; text-align: right; }
   [dir="rtl"] .plan-feature { flex-direction: row-reverse; justify-content: flex-end; }
+  /* Force Cairo font on ALL elements when Arabic is active */
+  [dir="rtl"] body {
+    font-family: 'Cairo', sans-serif !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+  }
+  [dir="rtl"] * {
+    font-family: inherit !important;
+    letter-spacing: 0 !important;
+    word-spacing: normal !important;
+  }
   [dir="rtl"] .nav-logo-text { text-align: right; }
   [dir="rtl"] .footer-brand { text-align: right; }
   [dir="rtl"] .footer-social { justify-content: flex-end; }
@@ -667,7 +678,7 @@
 <!-- LOADER -->
 <div id="loader">
   <!-- Physio Slim Logo Recreation -->
-  <img class="logo-shield" src="logo.png" alt="Physio Slim Health Club Logo" style="object-fit:contain;filter:drop-shadow(0 0 20px rgba(212,175,55,0.5));" />
+  <img class="logo-shield" src="logo.jpg" alt="Physio Slim Health Club Logo" style="object-fit:contain;filter:drop-shadow(0 0 12px rgba(212,175,55,0.5));" />
 
   <p>Physio Slim Health Club</p>
 </div>
@@ -697,7 +708,7 @@
 <!-- NAVBAR -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">
-    <img src="logo.png" alt="Physio Slim Health Club" style="width:88px;height:88px;object-fit:contain;border-radius:4px;" />
+    <img src="logo.jpg" alt="Physio Slim Health Club" style="width:44px;height:44px;object-fit:contain;border-radius:4px;" />
     <div class="nav-logo-text">PHYSIO SLIM<span>HEALTH CLUB</span></div>
   </a>
   <ul class="nav-links">
@@ -737,7 +748,7 @@
   <div class="hero-glow"></div>
   <div class="hero-content">
     <div class="hero-logo-wrap">
-      <img src="logo.png" alt="Physio Slim Health Club" style="width:160px;height:160px;object-fit:contain;filter:drop-shadow(0 0 20px rgba(212,175,55,0.4));" />
+      <img src="logo.jpg" alt="Physio Slim Health Club" style="width:160px;height:160px;object-fit:contain;filter:drop-shadow(0 0 20px rgba(212,175,55,0.4));" />
     </div>
     <div class="hero-badge">Premium Fitness • Fayoum, Egypt</div>
     <h1 class="hero-title">
@@ -1222,7 +1233,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#hero" class="nav-logo" style="display:inline-flex">
-          <img src="logo.png" alt="Physio Slim Health Club" style="width:44px;height:44px;object-fit:contain;" />
+          <img src="logo.jpg" alt="Physio Slim Health Club" style="width:44px;height:44px;object-fit:contain;" />
           <div class="nav-logo-text" style="margin-left:12px">PHYSIO SLIM<span>HEALTH CLUB</span></div>
         </a>
         <p>Fayoum's premier fitness destination. Where dedication meets excellence and every member's transformation matters.</p>
