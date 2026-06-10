@@ -583,6 +583,57 @@
   }
   .cta-banner-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
 
+  /* ── GYM SCHEDULE SECTION ── */
+  #schedule { background: var(--bg); }
+  .schedule-tabs { display: flex; gap: 0; margin-bottom: 40px; border: 1px solid var(--border); overflow: hidden; }
+  .sched-tab {
+    flex: 1; padding: 16px 24px; background: transparent; border: none; cursor: pointer;
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gray); transition: all 0.3s; position: relative;
+  }
+  .sched-tab.active { background: var(--gold); color: var(--bg); }
+  .sched-tab:not(.active):hover { color: var(--gold); background: rgba(212,175,55,0.06); }
+  .sched-tab svg { width: 16px; height: 16px; margin-right: 8px; vertical-align: middle; }
+  .sched-panel { display: none; }
+  .sched-panel.active { display: block; }
+  .schedule-table { width: 100%; border-collapse: collapse; }
+  .schedule-table th {
+    text-align: left; font-family: 'Montserrat', sans-serif; font-size: 11px;
+    font-weight: 700; letter-spacing: 2px; color: var(--gold); text-transform: uppercase;
+    padding: 12px 20px; border-bottom: 1px solid var(--border); background: rgba(212,175,55,0.04);
+  }
+  .schedule-table td {
+    padding: 16px 20px; font-size: 14px; color: var(--white); border-bottom: 1px solid rgba(212,175,55,0.08);
+    vertical-align: middle;
+  }
+  .schedule-table tr:last-child td { border-bottom: none; }
+  .schedule-table tr:hover td { background: rgba(212,175,55,0.04); }
+  .schedule-table .day-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: var(--white); min-width: 110px; }
+  .schedule-table .time-slot { color: var(--gray); font-size: 13px; }
+  .schedule-table .time-slot .slot-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.2);
+    padding: 4px 12px; font-size: 12px; font-family: 'Montserrat', sans-serif; font-weight: 600;
+    color: var(--gold); margin: 2px 4px 2px 0;
+  }
+  .schedule-table .time-slot .slot-badge.slot-secondary {
+    background: rgba(255,255,255,0.04); border-color: var(--border); color: var(--gray);
+  }
+  .schedule-table .closed-day { color: rgba(255,255,255,0.2); font-style: italic; font-size: 12px; }
+  .schedule-note {
+    margin-top: 24px; padding: 16px 20px; background: rgba(212,175,55,0.04);
+    border-left: 3px solid var(--gold); font-size: 13px; color: var(--gray);
+  }
+  .schedule-note strong { color: var(--gold); }
+  [dir="rtl"] .schedule-table th { text-align: right; }
+  [dir="rtl"] .sched-tab svg { margin-right: 0; margin-left: 8px; }
+  [dir="rtl"] .schedule-note { border-left: none; border-right: 3px solid var(--gold); }
+  @media (max-width: 768px) {
+    .schedule-table th, .schedule-table td { padding: 12px 14px; }
+    .schedule-table .day-name { font-size: 12px; min-width: 80px; }
+    .schedule-table .time-slot .slot-badge { font-size: 11px; padding: 3px 8px; }
+  }
+
   /* ── OPENING HOURS STRIP ── */
   .hours-strip {
     background: rgba(212,175,55,0.06); border: 1px solid var(--border);
@@ -717,6 +768,7 @@
     <li><a href="#facilities">Facilities</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#schedule" data-i18n="nav-schedule">Schedule</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="https://wa.me/201023265002" class="nav-cta" target="_blank" data-en="Join Now" data-ar="انضم الآن">Join Now</a>
@@ -1140,6 +1192,132 @@
   </div>
 </section>
 
+<!-- ═══════════════════════════ SCHEDULE ═══════════════════════════ -->
+<section id="schedule">
+  <div class="container">
+    <div class="section-label" style="justify-content:center" data-i18n="sched-label">Gym Schedule</div>
+    <h2 class="section-title" style="text-align:center" data-i18n="sched-title">Training <span class="gold" data-i18n="sched-gold">Hours</span></h2>
+    <p style="text-align:center;color:var(--gray);max-width:520px;margin:16px auto 40px;font-size:15px" data-i18n="sched-desc">Physio Slim is open 24 hours — separate schedules for men and women.</p>
+
+    <div class="schedule-tabs">
+      <button class="sched-tab active" onclick="switchTab('men',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0112 0v1"/></svg>
+        <span data-i18n="sched-men">Men's Appointments</span>
+      </button>
+      <button class="sched-tab" onclick="switchTab('women',this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0112 0v1"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="9" y1="19" x2="15" y2="19"/></svg>
+        <span data-i18n="sched-women">Women's Appointments</span>
+      </button>
+    </div>
+
+    <!-- MEN'S SCHEDULE -->
+    <div class="sched-panel active" id="panel-men">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th data-i18n="sched-th-day">Day</th>
+            <th data-i18n="sched-th-morning">Morning Session</th>
+            <th data-i18n="sched-th-evening">Evening Session</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="day-name" data-i18n="sched-sun">Sunday</td>
+            <td class="time-slot"><span class="closed-day" data-i18n="sched-closed">——————</span></td>
+            <td class="time-slot"><span class="slot-badge">3:00 PM → 4:00 AM</span></td>
+          </tr>
+          <tr>
+            <td class="day-name" data-i18n="sched-mon">Monday</td>
+            <td class="time-slot"><span class="slot-badge">7:00 AM → 2:00 PM</span></td>
+            <td class="time-slot"><span class="slot-badge">8:30 PM → 4:00 AM</span></td>
+          </tr>
+          <tr>
+            <td class="day-name" data-i18n="sched-tue">Tuesday</td>
+            <td class="time-slot"><span class="closed-day" data-i18n="sched-closed">——————</span></td>
+            <td class="time-slot"><span class="slot-badge">3:00 PM → 4:00 AM</span></td>
+          </tr>
+          <tr>
+            <td class="day-name" data-i18n="sched-wed">Wednesday</td>
+            <td class="time-slot"><span class="slot-badge">7:00 AM → 2:00 PM</span></td>
+            <td class="time-slot"><span class="slot-badge">8:30 PM → 4:00 AM</span></td>
+          </tr>
+          <tr>
+            <td class="day-name" data-i18n="sched-thu">Thursday</td>
+            <td class="time-slot"><span class="closed-day" data-i18n="sched-closed">——————</span></td>
+            <td class="time-slot"><span class="slot-badge">3:00 PM → 4:00 AM</span></td>
+          </tr>
+          <tr>
+            <td class="day-name" data-i18n="sched-fri">Friday</td>
+            <td class="time-slot"><span class="closed-day" data-i18n="sched-closed">——————</span></td>
+            <td class="time-slot"><span class="slot-badge">3:00 PM → 4:00 AM</span></td>
+          </tr>
+          <tr>
+            <td class="day-name" data-i18n="sched-sat">Saturday</td>
+            <td class="time-slot"><span class="slot-badge">7:00 AM → 2:00 PM</span></td>
+            <td class="time-slot"><span class="slot-badge">8:30 PM → 4:00 AM</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="schedule-note">
+        <strong data-i18n="sched-note-title">Note:</strong> <span data-i18n="sched-men-note">Morning sessions available on Monday, Wednesday & Saturday. Evening sessions available daily.</span>
+      </div>
+    </div>
+
+    <!-- WOMEN'S SCHEDULE -->
+    <div class="sched-panel" id="panel-women">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th data-i18n="sched-th-day">Day</th>
+            <th data-i18n="sched-th-morning">Morning Session</th>
+            <th data-i18n="sched-th-evening">Evening Session</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="day-name" data-i18n="sched-sun">Sunday</td>
+            <td class="time-slot"><span class="slot-badge">7:00 AM → 2:00 PM</span></td>
+            <td class="time-slot"><span class="slot-badge">3:00 PM → 10:00 PM</span></td>
+          </tr>
+          <tr>
+            <td class="day-name" data-i18n="sched-mon">Monday</td>
+            <td class="time-slot"><span class="slot-badge">7:00 AM → 2:00 PM</span></td>
+            <td class="time-slot"><span class="slot-badge">3:00 PM → 10:00 PM</span></td>
+          </tr>
+          <tr>
+            <td class="day-name" data-i18n="sched-tue">Tuesday</td>
+            <td class="time-slot"><span class="slot-badge">7:00 AM → 2:00 PM</span></td>
+            <td class="time-slot"><span class="slot-badge">3:00 PM → 10:00 PM</span></td>
+          </tr>
+          <tr>
+            <td class="day-name" data-i18n="sched-wed">Wednesday</td>
+            <td class="time-slot"><span class="slot-badge">7:00 AM → 2:00 PM</span></td>
+            <td class="time-slot"><span class="slot-badge">3:00 PM → 10:00 PM</span></td>
+          </tr>
+          <tr>
+            <td class="day-name" data-i18n="sched-thu">Thursday</td>
+            <td class="time-slot"><span class="slot-badge">7:00 AM → 2:00 PM</span></td>
+            <td class="time-slot"><span class="slot-badge">3:00 PM → 10:00 PM</span></td>
+          </tr>
+          <tr>
+            <td class="day-name" data-i18n="sched-fri">Friday</td>
+            <td class="time-slot"><span class="closed-day" data-i18n="sched-closed">——————</span></td>
+            <td class="time-slot"><span class="slot-badge">2:00 PM → 10:00 PM</span></td>
+          </tr>
+          <tr>
+            <td class="day-name" data-i18n="sched-sat">Saturday</td>
+            <td class="time-slot"><span class="slot-badge">7:00 AM → 2:00 PM</span></td>
+            <td class="time-slot"><span class="slot-badge">3:00 PM → 10:00 PM</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="schedule-note">
+        <strong data-i18n="sched-note-title">Note:</strong> <span data-i18n="sched-women-note">Women's section open daily with dedicated morning and evening slots.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════════════ CONTACT ═══════════════════════════ -->
 <section id="contact">
   <div class="container">
@@ -1363,6 +1541,14 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+// ── SCHEDULE TABS ──
+function switchTab(gender, btn) {
+  document.querySelectorAll('.sched-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.sched-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + gender).classList.add('active');
+}
+
 // ── COUNT-UP ANIMATION ──
 function animateCount(el, target, duration = 2200) {
   const start = performance.now();
@@ -1445,7 +1631,7 @@ const translations = {
   en: {
     // Navbar
     'nav-home': 'Home', 'nav-memberships': 'Memberships', 'nav-facilities': 'Facilities',
-    'nav-gallery': 'Gallery', 'nav-reviews': 'Reviews', 'nav-contact': 'Contact',
+    'nav-gallery': 'Gallery', 'nav-reviews': 'Reviews', 'nav-schedule': 'Schedule', 'nav-contact': 'Contact',
     'nav-join': 'Join Now',
     // Loader
     'loader-tagline': 'PREMIUM FITNESS • FAYOUM',
@@ -1515,6 +1701,17 @@ const translations = {
     'con-addr': 'Ahmed Shawki Street, Fayoum, Egypt',
     'con-btn-call': 'Call Now', 'con-btn-wa': 'WhatsApp',
     'hours-sat': 'Sat–Thu', 'hours-fri': 'Friday', 'hours-loc': 'Ahmed Shawki St',
+    // Schedule
+    'sched-label': 'Gym Schedule', 'sched-title': 'Training', 'sched-gold': 'Hours',
+    'sched-desc': 'Physio Slim is open 24 hours — separate schedules for men and women.',
+    'sched-men': "Men's Appointments", 'sched-women': "Women's Appointments",
+    'sched-th-day': 'Day', 'sched-th-morning': 'Morning Session', 'sched-th-evening': 'Evening Session',
+    'sched-sun': 'Sunday', 'sched-mon': 'Monday', 'sched-tue': 'Tuesday',
+    'sched-wed': 'Wednesday', 'sched-thu': 'Thursday', 'sched-fri': 'Friday', 'sched-sat': 'Saturday',
+    'sched-closed': '——————',
+    'sched-note-title': 'Note:',
+    'sched-men-note': 'Morning sessions available on Monday, Wednesday & Saturday. Evening sessions available daily.',
+    'sched-women-note': "Women's section open daily with dedicated morning and evening slots.",
     'map-label': '📍 Ahmed Shawki St, Fayoum',
     'map-apple': 'Apple Maps', 'map-google': 'Google Maps',
     // Footer
@@ -1532,7 +1729,7 @@ const translations = {
   },
   ar: {
     'nav-home': 'الرئيسية', 'nav-memberships': 'الاشتراكات', 'nav-facilities': 'المرافق',
-    'nav-gallery': 'المعرض', 'nav-reviews': 'التقييمات', 'nav-contact': 'تواصل معنا',
+    'nav-gallery': 'المعرض', 'nav-reviews': 'التقييمات', 'nav-schedule': 'المواعيد', 'nav-contact': 'تواصل معنا',
     'nav-join': 'انضم الآن',
     'loader-tagline': 'لياقة بدنية متميزة • الفيوم',
     'hero-badge': 'لياقة بدنية متميزة • الفيوم، مصر',
@@ -1591,6 +1788,17 @@ const translations = {
     'con-addr': 'شارع أحمد شوقي، الفيوم، مصر',
     'con-btn-call': 'اتصل الآن', 'con-btn-wa': 'واتساب',
     'hours-sat': 'السبت–الخميس', 'hours-fri': 'الجمعة', 'hours-loc': 'ش. أحمد شوقي',
+    // Schedule
+    'sched-label': 'مواعيد النادي', 'sched-title': 'مواعيد', 'sched-gold': 'التدريب',
+    'sched-desc': 'فيزيو سليم مفتوح ٢٤ ساعة — مواعيد منفصلة للرجال والسيدات.',
+    'sched-men': 'مواعيد الرجال', 'sched-women': 'مواعيد السيدات',
+    'sched-th-day': 'اليوم', 'sched-th-morning': 'الجلسة الصباحية', 'sched-th-evening': 'الجلسة المسائية',
+    'sched-sun': 'الأحد', 'sched-mon': 'الاثنين', 'sched-tue': 'الثلاثاء',
+    'sched-wed': 'الأربعاء', 'sched-thu': 'الخميس', 'sched-fri': 'الجمعة', 'sched-sat': 'السبت',
+    'sched-closed': '——————',
+    'sched-note-title': 'ملاحظة:',
+    'sched-men-note': 'الجلسات الصباحية متاحة الاثنين والأربعاء والسبت. الجلسات المسائية متاحة يومياً.',
+    'sched-women-note': 'قسم السيدات مفتوح يومياً بجلسات صباحية ومسائية مخصصة.',
     'map-label': '📍 ش. أحمد شوقي، الفيوم',
     'map-apple': 'خرائط آبل', 'map-google': 'خرائط جوجل',
     'footer-desc': 'الوجهة الرياضية الأولى في الفيوم. حيث يلتقي الإخلاص بالتميز وتهمّ تحولات كل عضو.',
