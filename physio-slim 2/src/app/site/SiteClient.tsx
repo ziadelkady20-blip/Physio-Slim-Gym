@@ -1,6 +1,6 @@
 'use client'
 // ═══════════════════════════════════════════════════
-// PHYSIO SLIM — Main Site (Client Component)
+// PHYSIO SLIM — Main Site (Client Component) — PREMIUM
 // Preserves original luxury black/gold design
 // ═══════════════════════════════════════════════════
 
@@ -14,7 +14,7 @@ import type {
   GalleryImage, Testimonial, Trainer, AboutSettings, Offer
 } from '@/types'
 
-// Default fallback data (used when Firebase returns null)
+// ─── Default fallback data ───────────────────────────────────────────────────
 const DEFAULT_HERO = {
   title: 'PHYSIO SLIM',
   subtitle: 'HEALTH CLUB',
@@ -42,6 +42,304 @@ const DEFAULT_SETTINGS = {
   copyright: '© 2024 Physio Slim Health Club',
 }
 
+const navLinks = ['Home', 'Memberships', 'Facilities', 'Gallery', 'Reviews', 'Contact']
+
+// ─── Inline Icon Component ────────────────────────────────────────────────────
+function Icon({ name, size = 20, stroke = 'currentColor', strokeWidth = 1.5 }: {
+  name: string; size?: number; stroke?: string; strokeWidth?: number
+}) {
+  const props = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke, strokeWidth }
+  switch (name) {
+    case 'phone':
+      return <svg {...props}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.09h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6A16 16 0 0 0 15.4 16l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 23 17.12v-.2z"/></svg>
+    case 'mail':
+      return <svg {...props}><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    case 'pin':
+    case 'map-pin':
+      return <svg {...props}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+    case 'arrow':
+      return <svg {...props}><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    case 'check':
+      return <svg {...props}><polyline points="20 6 9 17 4 12"/></svg>
+    case 'close':
+      return <svg {...props}><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    case 'zoom':
+      return <svg {...props}><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    case 'chevLeft':
+      return <svg {...props}><polyline points="15 18 9 12 15 6"/></svg>
+    case 'chevRight':
+      return <svg {...props}><polyline points="9 18 15 12 9 6"/></svg>
+    default:
+      return <svg {...props}><circle cx="12" cy="12" r="9"/></svg>
+  }
+}
+
+// ─── TransformationsSection ───────────────────────────────────────────────────
+function TransformationsSection({ whatsapp }: { whatsapp: string }) {
+  const transformations = [
+    { before: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80', after: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&q=80', name: 'Ahmed K.', duration: '4 Months', lostKg: '18kg' },
+    { before: 'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=400&q=80', after: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=80', name: 'Sara M.', duration: '3 Months', lostKg: '12kg' },
+    { before: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=400&q=80', after: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&q=80', name: 'Omar T.', duration: '6 Months', lostKg: '24kg' },
+  ]
+
+  return (
+    <section className="section-base bg-[var(--surface)] overflow-hidden">
+      <div className="container mx-auto max-w-[1280px]">
+        <div className="text-center mb-14 reveal">
+          <p className="flex items-center justify-center gap-3 text-[11px] tracking-[5px] text-gold font-montserrat font-bold uppercase mb-4">
+            <span className="w-8 h-px bg-gold" />Real Results<span className="w-8 h-px bg-gold" />
+          </p>
+          <h2 className="font-montserrat font-black uppercase leading-none" style={{ fontSize: 'clamp(32px,5vw,58px)' }}>
+            MEMBER <span className="text-gold">TRANSFORMATIONS</span>
+          </h2>
+          <div className="w-14 h-0.5 bg-gradient-to-r from-gold to-transparent mx-auto mt-5" />
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {transformations.map((t, i) => (
+            <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ delay: i * 0.12 }}
+              className="bg-[var(--card,var(--bg))] border border-[rgba(212,175,55,0.1)] overflow-hidden hover:border-[rgba(212,175,55,0.3)] transition-all group">
+              <div className="grid grid-cols-2 gap-0.5">
+                <div className="relative aspect-square overflow-hidden">
+                  <Image src={t.before} alt="Before" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500" sizes="(max-width: 768px) 50vw, 20vw" />
+                  <div className="absolute bottom-2 left-2 bg-[rgba(5,5,5,0.8)] text-[9px] tracking-[2px] font-montserrat font-bold uppercase text-gray-300 px-2 py-1">BEFORE</div>
+                </div>
+                <div className="relative aspect-square overflow-hidden">
+                  <Image src={t.after} alt="After" fill className="object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-500" sizes="(max-width: 768px) 50vw, 20vw" />
+                  <div className="absolute bottom-2 left-2 bg-gradient-to-r from-gold to-gold-dark text-[9px] tracking-[2px] font-montserrat font-bold uppercase text-black px-2 py-1">AFTER</div>
+                </div>
+              </div>
+              <div className="p-6 flex items-center justify-between">
+                <div>
+                  <div className="font-montserrat font-bold text-[15px]">{t.name}</div>
+                  <div className="text-[11px] text-gray-400 font-montserrat">{t.duration}</div>
+                </div>
+                <div className="text-right">
+                  <div className="font-montserrat font-black text-2xl text-gold">-{t.lostKg}</div>
+                  <div className="text-[10px] tracking-[1px] text-gray-500 font-montserrat uppercase">Lost</div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <a href={whatsapp} target="_blank"
+            className="inline-flex items-center gap-2 bg-gradient-to-br from-gold to-gold-dark text-black font-montserrat font-black text-[12px] tracking-[2.5px] uppercase px-10 py-4 clip-btn hover:brightness-110 transition-all">
+            Start Your Transformation
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── FitnessCalculators ───────────────────────────────────────────────────────
+function FitnessCalculators() {
+  const [calcTab, setCalcTab] = useState<'bmi' | 'calories'>('bmi')
+  const [bmiData, setBmiData] = useState({ weight: '', height: '' })
+  const [calData, setCalData] = useState({ weight: '', height: '', age: '', gender: 'male', activity: '1.375' })
+  const [bmiResult, setBmiResult] = useState<number | null>(null)
+  const [calResult, setCalResult] = useState<number | null>(null)
+
+  function calcBMI() {
+    const w = parseFloat(bmiData.weight), h = parseFloat(bmiData.height) / 100
+    if (w > 0 && h > 0) setBmiResult(Math.round((w / (h * h)) * 10) / 10)
+  }
+  function calcCalories() {
+    const w = parseFloat(calData.weight), h = parseFloat(calData.height), a = parseFloat(calData.age)
+    if (w > 0 && h > 0 && a > 0) {
+      const bmr = calData.gender === 'male' ? 88.36 + 13.4 * w + 4.8 * h - 5.7 * a : 447.6 + 9.2 * w + 3.1 * h - 4.3 * a
+      setCalResult(Math.round(bmr * parseFloat(calData.activity)))
+    }
+  }
+  function getBMILabel(bmi: number) {
+    if (bmi < 18.5) return { label: 'Underweight', color: '#60a5fa' }
+    if (bmi < 25) return { label: 'Normal weight', color: '#34d399' }
+    if (bmi < 30) return { label: 'Overweight', color: '#fbbf24' }
+    return { label: 'Obese', color: '#f87171' }
+  }
+
+  return (
+    <section className="section-base bg-[var(--bg)]">
+      <div className="container mx-auto max-w-[900px]">
+        <div className="text-center mb-12 reveal">
+          <p className="flex items-center justify-center gap-3 text-[11px] tracking-[5px] text-gold font-montserrat font-bold uppercase mb-4">
+            <span className="w-8 h-px bg-gold" />Free Tools<span className="w-8 h-px bg-gold" />
+          </p>
+          <h2 className="font-montserrat font-black uppercase leading-none" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>
+            FITNESS <span className="text-gold">CALCULATORS</span>
+          </h2>
+          <div className="w-14 h-0.5 bg-gradient-to-r from-gold to-transparent mx-auto mt-5" />
+        </div>
+
+        <div className="flex gap-0 mb-0 border-b border-[var(--border)] justify-center">
+          {(['bmi', 'calories'] as const).map((tab) => (
+            <button key={tab} onClick={() => setCalcTab(tab)}
+              className={`px-10 py-3 font-montserrat font-bold text-[11px] tracking-[2px] uppercase transition-all border-b-2 -mb-px ${calcTab === tab ? 'border-gold text-gold' : 'border-transparent text-gray-400 hover:text-gold'}`}>
+              {tab === 'bmi' ? 'BMI Calculator' : 'Calorie Calculator'}
+            </button>
+          ))}
+        </div>
+
+        <div className="bg-[var(--surface)] border border-[rgba(212,175,55,0.1)] p-10 mt-0">
+          {calcTab === 'bmi' ? (
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="space-y-4">
+                <div><label className="form-label">Weight (kg)</label><input className="form-input" type="number" placeholder="70" value={bmiData.weight} onChange={e => setBmiData({ ...bmiData, weight: e.target.value })} /></div>
+                <div><label className="form-label">Height (cm)</label><input className="form-input" type="number" placeholder="175" value={bmiData.height} onChange={e => setBmiData({ ...bmiData, height: e.target.value })} /></div>
+                <button onClick={calcBMI} className="w-full bg-gradient-to-br from-gold to-gold-dark text-black font-montserrat font-bold text-[11px] tracking-[2px] uppercase py-3 clip-btn-sm hover:brightness-110 transition-all">
+                  Calculate BMI
+                </button>
+              </div>
+              <div className="text-center">
+                {bmiResult ? (
+                  <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
+                    <div className="font-montserrat font-black text-[72px] leading-none" style={{ color: getBMILabel(bmiResult).color }}>{bmiResult}</div>
+                    <div className="font-montserrat font-bold text-[14px] mt-2" style={{ color: getBMILabel(bmiResult).color }}>{getBMILabel(bmiResult).label}</div>
+                    <p className="text-[12px] text-gray-500 mt-4">Healthy range: 18.5 – 24.9</p>
+                  </motion.div>
+                ) : (
+                  <div className="text-gray-600 font-montserrat text-[13px]">Enter your details to see your BMI</div>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-3">
+                  <div><label className="form-label">Weight (kg)</label><input className="form-input" type="number" placeholder="70" value={calData.weight} onChange={e => setCalData({ ...calData, weight: e.target.value })} /></div>
+                  <div><label className="form-label">Height (cm)</label><input className="form-input" type="number" placeholder="175" value={calData.height} onChange={e => setCalData({ ...calData, height: e.target.value })} /></div>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div><label className="form-label">Age</label><input className="form-input" type="number" placeholder="30" value={calData.age} onChange={e => setCalData({ ...calData, age: e.target.value })} /></div>
+                  <div>
+                    <label className="form-label">Gender</label>
+                    <select className="form-input" value={calData.gender} onChange={e => setCalData({ ...calData, gender: e.target.value })}>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label className="form-label">Activity Level</label>
+                  <select className="form-input" value={calData.activity} onChange={e => setCalData({ ...calData, activity: e.target.value })}>
+                    <option value="1.2">Sedentary</option>
+                    <option value="1.375">Light exercise</option>
+                    <option value="1.55">Moderate exercise</option>
+                    <option value="1.725">Heavy exercise</option>
+                    <option value="1.9">Athlete</option>
+                  </select>
+                </div>
+                <button onClick={calcCalories} className="w-full bg-gradient-to-br from-gold to-gold-dark text-black font-montserrat font-bold text-[11px] tracking-[2px] uppercase py-3 clip-btn-sm hover:brightness-110 transition-all">
+                  Calculate Calories
+                </button>
+              </div>
+              <div className="text-center">
+                {calResult ? (
+                  <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
+                    <div className="font-montserrat font-black text-[64px] leading-none text-gold">{calResult}</div>
+                    <div className="font-montserrat font-bold text-[13px] text-gray-400 mt-2">Calories / Day</div>
+                    <div className="mt-5 space-y-2">
+                      <div className="flex justify-between text-[12px] text-gray-500"><span>Weight loss</span><span className="text-gold">{calResult - 500} kcal</span></div>
+                      <div className="flex justify-between text-[12px] text-gray-500"><span>Maintenance</span><span className="text-gold">{calResult} kcal</span></div>
+                      <div className="flex justify-between text-[12px] text-gray-500"><span>Muscle gain</span><span className="text-gold">{calResult + 300} kcal</span></div>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <div className="text-gray-600 font-montserrat text-[13px]">Enter your details to see your daily calorie needs</div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── AIFeaturesSection ────────────────────────────────────────────────────────
+function AIFeaturesSection({ whatsapp }: { whatsapp: string }) {
+  const features = [
+    { icon: '🤖', title: 'AI Workout Planner', desc: 'Personalized workout programs generated based on your goals, fitness level, and available equipment.' },
+    { icon: '🥗', title: 'Smart Nutrition Guide', desc: 'Custom meal plans and macronutrient targets tailored specifically to your body and objectives.' },
+    { icon: '📊', title: 'Progress Analytics', desc: 'Track your transformation with detailed metrics, charts, and milestone celebrations.' },
+    { icon: '💬', title: '24/7 Coach Support', desc: 'Get instant answers to your fitness questions and expert guidance whenever you need it.' },
+  ]
+
+  return (
+    <section className="section-base bg-[var(--surface)] relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.06) 0%, transparent 60%)' }} />
+      <div className="container mx-auto max-w-[1280px] relative">
+        <div className="text-center mb-14 reveal">
+          <p className="flex items-center justify-center gap-3 text-[11px] tracking-[5px] text-gold font-montserrat font-bold uppercase mb-4">
+            <span className="w-8 h-px bg-gold" />Premium Features<span className="w-8 h-px bg-gold" />
+          </p>
+          <h2 className="font-montserrat font-black uppercase leading-none" style={{ fontSize: 'clamp(32px,5vw,58px)' }}>
+            SMART <span className="text-gold">FITNESS</span>
+          </h2>
+          <div className="w-14 h-0.5 bg-gradient-to-r from-gold to-transparent mx-auto mt-5" />
+          <p className="text-[14px] text-gray-400 max-w-[560px] mx-auto mt-5">
+            Members get access to cutting-edge tools that accelerate your results and keep you on track.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {features.map((f, i) => (
+            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+              className="bg-[var(--bg)] border border-[rgba(212,175,55,0.08)] p-8 hover:border-[rgba(212,175,55,0.3)] transition-all group hover:-translate-y-1">
+              <div className="text-4xl mb-5">{f.icon}</div>
+              <h3 className="font-montserrat font-bold text-[15px] mb-3 group-hover:text-gold transition-colors">{f.title}</h3>
+              <p className="text-[13px] text-gray-400 leading-relaxed">{f.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <a href={whatsapp} target="_blank"
+            className="inline-flex items-center gap-2 border border-[rgba(212,175,55,0.3)] text-gold font-montserrat font-bold text-[11px] tracking-[2px] uppercase px-8 py-3 clip-btn-sm hover:border-gold hover:bg-[rgba(212,175,55,0.06)] transition-all">
+            Unlock All Features
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── MemberPortalSection ──────────────────────────────────────────────────────
+function MemberPortalSection({ whatsapp }: { whatsapp: string }) {
+  return (
+    <section className="py-20 px-8 bg-gradient-to-br from-[var(--bg)] to-[var(--surface)] relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-30" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(212,175,55,0.03) 60px, rgba(212,175,55,0.03) 61px), repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(212,175,55,0.03) 60px, rgba(212,175,55,0.03) 61px)' }} />
+      <div className="container mx-auto max-w-[1000px] relative text-center">
+        <div className="inline-flex items-center gap-2 border border-[rgba(212,175,55,0.2)] px-4 py-1.5 text-[10px] tracking-[4px] text-gold font-montserrat font-semibold uppercase mb-7 bg-[rgba(212,175,55,0.04)]">
+          <span className="w-1.5 h-1.5 rounded-full bg-gold animate-[blink_1.5s_infinite]" />
+          Members Only
+        </div>
+        <h2 className="font-montserrat font-black uppercase leading-none mb-5" style={{ fontSize: 'clamp(32px,5vw,58px)' }}>
+          YOUR PERSONAL <span className="text-gold">PORTAL</span>
+        </h2>
+        <p className="text-[15px] text-gray-400 max-w-[560px] mx-auto leading-relaxed mb-10">
+          Track workouts, monitor nutrition, book sessions, and manage your membership — all in one place.
+        </p>
+        <div className="flex gap-4 justify-center flex-wrap">
+          <a href={whatsapp} target="_blank"
+            className="inline-flex items-center gap-2 bg-gradient-to-br from-gold to-gold-dark text-black font-montserrat font-black text-[12px] tracking-[2.5px] uppercase px-10 py-4 clip-btn hover:brightness-110 transition-all">
+            Become a Member
+          </a>
+          <a href="#contact"
+            className="inline-flex items-center gap-2 border border-[rgba(255,255,255,0.2)] text-white font-montserrat font-semibold text-[12px] tracking-[2px] uppercase px-8 py-4 clip-btn hover:bg-[rgba(255,255,255,0.05)] transition-all">
+            Learn More
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── Props ────────────────────────────────────────────────────────────────────
 interface Props {
   settings: SiteSettings | null
   hero: HeroSettings | null
@@ -54,19 +352,35 @@ interface Props {
   offers: Offer[]
 }
 
+// ─── Main Component ───────────────────────────────────────────────────────────
 export default function SiteClient({ settings, hero, memberships, facilities, gallery, testimonials, trainers, about, offers }: Props) {
   const h = { ...DEFAULT_HERO, ...hero }
-  const s = { ...DEFAULT_SETTINGS, ...settings }
+  const s = { ...DEFAULT_SETTINGS, ...settings } as typeof DEFAULT_SETTINGS & { footerTagline?: string }
 
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('gym')
+  const [galleryFilter, setGalleryFilter] = useState('All')
   const [lightbox, setLightbox] = useState<{ open: boolean; idx: number }>({ open: false, idx: 0 })
   const [loaded, setLoaded] = useState(false)
   const [formData, setFormData] = useState({ name: '', phone: '', message: '' })
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const scrollRef = useRef<number>(0)
+
+  // Gallery derived state
+  const galleryCats = ['All', ...Array.from(new Set(gallery.map((img: any) => img.category).filter(Boolean)))]
+  const filteredGallery = galleryFilter === 'All' ? gallery : gallery.filter((img: any) => img.category === galleryFilter)
+  const displayGallery = filteredGallery.length > 0 ? filteredGallery : gallery.length > 0 ? gallery : [
+    { id: '1', url: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800', caption: 'Main Floor' },
+    { id: '2', url: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800', caption: 'Training' },
+    { id: '3', url: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=800', caption: 'Cardio' },
+    { id: '4', url: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800', caption: 'Weights' },
+    { id: '5', url: 'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=800', caption: 'Pool' },
+    { id: '6', url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800', caption: 'Machines' },
+    { id: '7', url: 'https://images.unsplash.com/photo-1577221084712-45b0445d2b00?w=800', caption: 'Boxing' },
+    { id: '8', url: 'https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=800', caption: 'Stretching' },
+  ] as any[]
 
   // Scroll effects
   useEffect(() => {
@@ -104,7 +418,7 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
     trackEvent('websiteVisits').catch(() => {})
   }, [])
 
-  // Membership categories from data
+  // Membership categories
   const categories = Array.from(new Set(memberships.map((m) => m.category)))
   const activeMembers = memberships.filter((m) => m.active !== false && m.category === activeTab)
 
@@ -169,7 +483,7 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
         </a>
 
         <ul className="hidden lg:flex gap-9 list-none">
-          {['Home', 'Memberships', 'Facilities', 'Gallery', 'Reviews', 'Contact'].map((item) => (
+          {navLinks.map((item) => (
             <li key={item}>
               <a
                 href={`#${item.toLowerCase()}`}
@@ -216,7 +530,7 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
                 <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </button>
-            {['Home', 'Memberships', 'Facilities', 'Gallery', 'Reviews', 'Contact'].map((item) => (
+            {navLinks.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -310,15 +624,12 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
           </div>
 
           <div className="mt-7 flex items-center justify-center gap-3 text-sm text-gray-500 font-montserrat tracking-widest">
-            <span>Transform</span>
-            <span className="text-gold">·</span>
-            <span>Build</span>
-            <span className="text-gold">·</span>
+            <span>Transform</span><span className="text-gold">·</span>
+            <span>Build</span><span className="text-gold">·</span>
             <span>Unlock</span>
           </div>
         </motion.div>
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-9 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10 animate-bounce">
           <div className="w-6 h-9 border border-[rgba(212,175,55,0.5)] rounded-xl flex justify-center pt-1.5">
             <span className="w-0.5 h-2 bg-gold rounded-sm animate-[scrollDot_1.5s_ease-in-out_infinite]" />
@@ -344,12 +655,8 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
               />
               <div className="absolute bottom-[-20px] right-[-20px] w-44 h-44 border-2 border-gold opacity-30" />
               <div className="absolute top-7 left-[-20px] bg-gradient-to-br from-gold to-gold-dark px-5 py-4 clip-btn-sm">
-                <span className="font-montserrat font-black text-[28px] text-black block leading-none">
-                  {about?.badgeNumber || '5+'}
-                </span>
-                <span className="font-montserrat font-semibold text-[10px] text-black tracking-[2px] uppercase">
-                  {about?.badgeLabel || 'Years of Excellence'}
-                </span>
+                <span className="font-montserrat font-black text-[28px] text-black block leading-none">{about?.badgeNumber || '5+'}</span>
+                <span className="font-montserrat font-semibold text-[10px] text-black tracking-[2px] uppercase">{about?.badgeLabel || 'Years of Excellence'}</span>
               </div>
             </div>
 
@@ -362,9 +669,8 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
               </h2>
               <div className="w-14 h-0.5 bg-gradient-to-r from-gold to-transparent my-5" />
               <p className="text-[14.5px] text-gray-400 leading-[1.8] mb-6">
-                {about?.text || 'Physio Slim Health Club is Fayoum\'s premier fitness destination. We combine professional coaching, state-of-the-art equipment, and a luxurious environment to help you achieve your fitness goals.'}
+                {about?.text || "Physio Slim Health Club is Fayoum's premier fitness destination. We combine professional coaching, state-of-the-art equipment, and a luxurious environment to help you achieve your fitness goals."}
               </p>
-
               {about?.stats && (
                 <div className="grid grid-cols-3 gap-6 mt-8">
                   {about.stats.map((stat, i) => (
@@ -395,44 +701,31 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
             <div className="w-14 h-0.5 bg-gradient-to-r from-gold to-transparent mx-auto mt-5" />
           </div>
 
-          {/* Category Tabs */}
           {categories.length > 0 && (
             <div className="flex gap-0 mb-10 border-b border-[var(--border)] justify-center">
               {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveTab(cat)}
+                <button key={cat} onClick={() => setActiveTab(cat)}
                   className={`px-8 py-3 font-montserrat font-bold text-[11px] tracking-[2px] uppercase transition-all border-b-2 -mb-px ${
-                    activeTab === cat
-                      ? 'border-gold text-gold'
-                      : 'border-transparent text-gray-400 hover:text-gold'
-                  }`}
-                >
+                    activeTab === cat ? 'border-gold text-gold' : 'border-transparent text-gray-400 hover:text-gold'
+                  }`}>
                   {cat}
                 </button>
               ))}
             </div>
           )}
 
-          {/* Plans Grid */}
           <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
             {(activeMembers.length > 0 ? activeMembers : memberships.slice(0, 4)).map((plan) => (
-              <motion.div
-                key={plan.id}
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+              <motion.div key={plan.id} layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 className={`bg-[var(--surface)] border flex flex-col p-9 relative overflow-hidden transition-all hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(212,175,55,0.12)] cursor-default ${
                   plan.featured ? 'border-gold bg-gradient-to-b from-[rgba(212,175,55,0.06)] to-[var(--surface)]' : 'border-[var(--border)] hover:border-gold'
-                }`}
-              >
+                }`}>
                 {plan.featured && (
                   <div className="absolute top-0 right-0 bg-gradient-to-br from-gold to-gold-dark text-black font-montserrat font-bold text-[9px] tracking-[2px] px-3 py-1.5"
                     style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 12px 100%)' }}>
                     BEST VALUE
                   </div>
                 )}
-
                 <div className="text-[11px] tracking-[3px] text-gold font-montserrat font-bold uppercase mb-3">{plan.sessions}</div>
                 <div className="font-montserrat font-black mb-1">
                   <span className="text-gold text-xl align-super">{plan.currency || 'EGP'}</span>
@@ -442,7 +735,6 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
                 <div className="font-montserrat font-bold text-lg mb-2">{plan.name}</div>
                 <p className="text-[13px] text-gray-400 mb-3">{plan.description}</p>
                 <div className="h-px bg-[var(--border)] my-4" />
-
                 <ul className="flex-1">
                   {plan.features?.map((feat, i) => (
                     <li key={i} className="flex items-center gap-2.5 text-[13px] text-gray-400 py-2 border-b border-[rgba(212,175,55,0.06)]">
@@ -451,25 +743,16 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
                     </li>
                   ))}
                 </ul>
-
                 <div className="mt-6 flex flex-col gap-2.5">
-                  <a
-                    href="#contact"
-                    onClick={() => trackEvent('membershipClicks')}
-                    className="block text-center bg-gradient-to-br from-gold to-gold-dark text-black font-montserrat font-bold text-[11px] tracking-[2px] uppercase py-3 clip-btn-sm hover:brightness-110 transition-all"
-                  >
+                  <a href="#contact" onClick={() => trackEvent('membershipClicks')}
+                    className="block text-center bg-gradient-to-br from-gold to-gold-dark text-black font-montserrat font-bold text-[11px] tracking-[2px] uppercase py-3 clip-btn-sm hover:brightness-110 transition-all">
                     Subscribe Now
                   </a>
-                  <a
-                    href={plan.whatsappLink || s.whatsapp}
-                    target="_blank"
-                    onClick={() => trackEvent('whatsappClicks')}
-                    className="flex items-center justify-center gap-2 text-[#25d366] border border-[#25d366] font-montserrat font-bold text-[11px] tracking-[2px] uppercase py-3 clip-btn-sm hover:bg-[rgba(37,211,102,0.1)] transition-all"
-                  >
+                  <a href={plan.whatsappLink || s.whatsapp} target="_blank" onClick={() => trackEvent('whatsappClicks')}
+                    className="flex items-center justify-center gap-2 text-[#25d366] border border-[#25d366] font-montserrat font-bold text-[11px] tracking-[2px] uppercase py-3 clip-btn-sm hover:bg-[rgba(37,211,102,0.1)] transition-all">
                     WhatsApp
                   </a>
                 </div>
-
                 <div className="absolute bottom-0 right-0 w-28 h-28 pointer-events-none"
                   style={{ background: 'radial-gradient(circle at bottom right, rgba(212,175,55,0.08), transparent)' }} />
               </motion.div>
@@ -494,27 +777,19 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-0.5 mt-14">
             {(facilities.length > 0 ? facilities : [
-              { id: '1', title: 'Main Gym Floor', description: 'Premium equipment for all fitness levels', image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80', icon: 'dumbbell' },
-              { id: '2', title: 'Swimming Pool', description: 'Olympic-grade heated pool', image: 'https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=800&q=80', icon: 'waves' },
-              { id: '3', title: 'Cardio Zone', description: 'State-of-the-art cardio machines', image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=800&q=80', icon: 'heart' },
+              { id: '1', title: 'Main Gym Floor', description: 'Premium equipment for all fitness levels', image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80' },
+              { id: '2', title: 'Swimming Pool', description: 'Olympic-grade heated pool', image: 'https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=800&q=80' },
+              { id: '3', title: 'Cardio Zone', description: 'State-of-the-art cardio machines', image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=800&q=80' },
+              { id: '4', title: 'Ladies Section', description: 'Private, fully equipped ladies-only floor', image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80' },
+              { id: '5', title: 'Boxing Ring', description: 'Full-size ring with professional gear', image: 'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=800&q=80' },
+              { id: '6', title: 'Sauna & Recovery', description: 'Steam room, sauna, and ice bath', image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80' },
             ] as any[]).map((facility) => (
               <div key={facility.id} className="relative aspect-[4/3] overflow-hidden cursor-pointer group">
-                <Image
-                  src={facility.image || 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800'}
-                  alt={facility.title}
-                  fill
-                  className="object-cover grayscale-[40%] transition-all duration-500 group-hover:scale-[1.08] group-hover:grayscale-0"
-                />
+                <Image src={facility.image || 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800'} alt={facility.title}
+                  fill className="object-cover grayscale-[40%] transition-all duration-500 group-hover:scale-[1.08] group-hover:grayscale-0" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[rgba(5,5,5,0.9)] via-[rgba(5,5,5,0.2)] to-transparent flex flex-col justify-end p-7 transition-all group-hover:from-[rgba(5,5,5,0.95)]">
-                  <div className="w-10 h-10 bg-[rgba(212,175,55,0.15)] border border-[var(--border)] flex items-center justify-center mb-3">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="1.5">
-                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                  </div>
                   <div className="font-montserrat font-black text-lg">{facility.title}</div>
-                  <p className="text-[12.5px] text-gray-400 mt-1.5 max-h-0 overflow-hidden transition-all group-hover:max-h-16">
-                    {facility.description}
-                  </p>
+                  <p className="text-[12.5px] text-gray-400 mt-1.5 max-h-0 overflow-hidden transition-all group-hover:max-h-16">{facility.description}</p>
                 </div>
               </div>
             ))}
@@ -523,387 +798,60 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
       </section>
 
       {/* ═══════════════════════════
-          GALLERY
+          TRAINERS
       ═══════════════════════════ */}
-      <section id="gallery" className="section-base bg-[var(--bg)]" onClick={() => trackEvent('galleryViews')}>
-        <div className="container mx-auto max-w-[1280px]">
-          <div className="text-center mb-14 reveal">
-            <p className="section-label justify-center flex items-center gap-3 text-[11px] tracking-[5px] text-gold font-montserrat font-bold uppercase mb-4">
-              <span className="w-8 h-px bg-gold" />Gallery<span className="w-8 h-px bg-gold" />
-            </p>
-            <h2 className="font-montserrat font-black uppercase" style={{ fontSize: 'clamp(32px, 5vw, 58px)' }}>
-              OUR <span className="text-gold">CLUB</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-4 gap-2 mt-14">
-            {(gallery.length > 0 ? gallery.slice(0, 7) : [
-              { id: '1', url: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800', caption: 'Main Floor' },
-              { id: '2', url: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800', caption: 'Training' },
-              { id: '3', url: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=800', caption: 'Cardio' },
-              { id: '4', url: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800', caption: 'Weights' },
-              { id: '5', url: 'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=800', caption: 'Pool' },
-            ] as any[]).map((img, i) => (
-              <div
-                key={img.id}
-                className={`relative overflow-hidden cursor-pointer group ${i === 0 ? 'col-span-2 row-span-2' : ''}`}
-                style={{ aspectRatio: i === 0 ? '1' : '1' }}
-                onClick={() => setLightbox({ open: true, idx: i })}
-              >
-                <Image
-                  src={img.url}
-                  alt={img.caption || `Gallery ${i + 1}`}
-                  fill
-                  className="object-cover grayscale-[20%] transition-transform duration-500 group-hover:scale-[1.07] group-hover:grayscale-0"
-                />
-                <div className="absolute inset-0 bg-[rgba(212,175,55,0.08)] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center border border-transparent group-hover:border-gold">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="1.5">
-                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-                  </svg>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightbox.open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-[rgba(0,0,0,0.95)] z-[8000] flex items-center justify-center"
-            onClick={() => setLightbox({ ...lightbox, open: false })}
-          >
-            <button className="absolute top-6 right-8 text-white text-3xl w-11 h-11 border border-[var(--border)] hover:border-gold hover:text-gold transition-all">✕</button>
-            <Image
-              src={(gallery.length > 0 ? gallery[lightbox.idx]?.url : '') || 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200'}
-              alt="Gallery"
-              width={1200}
-              height={800}
-              className="max-w-[90vw] max-h-[85vh] object-contain border border-[var(--border)]"
-              onClick={(e) => e.stopPropagation()}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ═══════════════════════════
-          STATS
-      ═══════════════════════════ */}
-      <section id="stats" className="py-0 bg-gradient-to-br from-[var(--surface)] to-[var(--bg)] border-t border-b border-[var(--border)]">
-        <div className="grid grid-cols-2 md:grid-cols-4 border border-[var(--border)]">
-          {(about?.stats || [
-            { number: '2000+', label: 'Active Members' },
-            { number: '15+', label: 'Expert Coaches' },
-            { number: '5+', label: 'Years of Excellence' },
-            { number: '98%', label: 'Satisfaction Rate' },
-          ]).map((stat, i) => (
-            <div key={i} className="bg-[var(--bg)] py-14 px-10 text-center relative overflow-hidden border-r border-[var(--border)] last:border-r-0 reveal">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-0.5 bg-gold" />
-              <div className="font-montserrat font-black text-[64px] leading-none text-gold">{stat.number}</div>
-              <div className="font-montserrat font-semibold text-[11px] tracking-[4px] text-gray-400 uppercase mt-2.5">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ═══════════════════════════
-          TESTIMONIALS
-      ═══════════════════════════ */}
-      <section id="reviews" className="section-base bg-[var(--bg)] overflow-hidden">
-        <div className="text-center mb-14 reveal">
-          <p className="flex items-center justify-center gap-3 text-[11px] tracking-[5px] text-gold font-montserrat font-bold uppercase mb-4">
-            <span className="w-8 h-px bg-gold" />Member Reviews<span className="w-8 h-px bg-gold" />
-          </p>
-          <h2 className="font-montserrat font-black uppercase" style={{ fontSize: 'clamp(32px, 5vw, 58px)' }}>
-            SUCCESS <span className="text-gold">STORIES</span>
-          </h2>
-          <div className="w-14 h-0.5 bg-gradient-to-r from-gold to-transparent mx-auto mt-5" />
-        </div>
-
-        <div className="relative overflow-hidden">
-          <div className="absolute left-0 top-0 w-24 h-full z-10 pointer-events-none bg-gradient-to-r from-[var(--bg)] to-transparent" />
-          <div className="absolute right-0 top-0 w-24 h-full z-10 pointer-events-none bg-gradient-to-l from-[var(--bg)] to-transparent" />
-          <div className="flex gap-6 animate-[slide_28s_linear_infinite] hover:[animation-play-state:paused] w-max">
-            {[...(testimonials.length > 0 ? testimonials : [
-              { id: '1', name: 'Ahmed Hassan', rating: 5, comment: 'Best gym in Fayoum by far. The equipment is premium and the coaches are incredibly professional.', memberSince: '2022', initials: 'AH' },
-              { id: '2', name: 'Sara Mohamed', rating: 5, comment: 'I lost 15kg in 3 months with the help of the amazing team here. Highly recommend!', memberSince: '2023', initials: 'SM' },
-              { id: '3', name: 'Omar Khalil', rating: 5, comment: 'The swimming pool and gym combination is unbeatable. Great value for money.', memberSince: '2021', initials: 'OK' },
-            ] as any[]), ...(testimonials.length > 0 ? testimonials : [
-              { id: '4', name: 'Nour Ali', rating: 5, comment: 'The ladies section is clean, private, and well-equipped. Feel safe and comfortable here.', memberSince: '2022', initials: 'NA' },
-            ] as any[])].map((t, i) => (
-              <div key={`${t.id}-${i}`} className="bg-[var(--surface)] border border-[var(--border)] p-8 w-[340px] flex-shrink-0 relative hover:border-[rgba(212,175,55,0.4)] transition-colors">
-                <div className="absolute top-5 right-6 text-[72px] leading-none text-[rgba(212,175,55,0.08)] font-serif font-black select-none">"</div>
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: t.rating }).map((_, j) => (
-                    <svg key={j} width="14" height="14" viewBox="0 0 24 24" fill="#D4AF37"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  ))}
-                </div>
-                <p className="text-[14px] leading-relaxed text-gray-400 italic mb-5">{t.comment}</p>
-                <div className="flex items-center gap-3.5">
-                  <div className="w-11 h-11 rounded-full border-2 border-[var(--border)] bg-[var(--bg)] flex items-center justify-center font-montserrat font-black text-base text-gold">
-                    {t.initials || t.name?.[0]}
-                  </div>
-                  <div>
-                    <div className="font-montserrat font-bold text-[14px]">{t.name}</div>
-                    <div className="text-[11px] text-gray-400">Member since {t.memberSince}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════
-          CONTACT
-      ═══════════════════════════ */}
-      <section id="contact" className="section-base bg-[var(--surface)]">
-        <div className="container mx-auto max-w-[1280px]">
-          <div className="text-center mb-14 reveal">
-            <p className="flex items-center justify-center gap-3 text-[11px] tracking-[5px] text-gold font-montserrat font-bold uppercase mb-4">
-              <span className="w-8 h-px bg-gold" />Contact Us<span className="w-8 h-px bg-gold" />
-            </p>
-            <h2 className="font-montserrat font-black uppercase" style={{ fontSize: 'clamp(32px, 5vw, 58px)' }}>
-              GET IN <span className="text-gold">TOUCH</span>
-            </h2>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            {/* Contact Info */}
-            <div className="reveal left">
-              {[
-                { icon: 'phone', label: 'Phone', value: s.phone, link: `tel:${s.phone}` },
-                { icon: 'mail', label: 'Email', value: s.email, link: `mailto:${s.email}` },
-                { icon: 'map-pin', label: 'Location', value: s.address },
-              ].map((item) => (
-                <div key={item.icon} className="flex gap-4 items-start mb-7">
-                  <div className="w-12 h-12 bg-[rgba(212,175,55,0.08)] border border-[var(--border)] flex items-center justify-center flex-shrink-0">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="1.5">
-                      {item.icon === 'phone' && <><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.09h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6A16 16 0 0 0 15.4 16l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 23 17.12v-.2z"/></>}
-                      {item.icon === 'mail' && <><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></>}
-                      {item.icon === 'map-pin' && <><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></>}
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-[10px] tracking-[3px] text-gold font-montserrat font-bold uppercase mb-1.5">{item.label}</div>
-                    {item.link
-                      ? <a href={item.link} className="text-[14px] text-white hover:text-gold transition-colors">{item.value}</a>
-                      : <div className="text-[14px]">{item.value}</div>
-                    }
-                  </div>
-                </div>
-              ))}
-
-              <div className="flex gap-3.5 mt-9 flex-wrap">
-                <a href={s.whatsapp} target="_blank" onClick={() => trackEvent('whatsappClicks')}
-                  className="inline-flex items-center gap-2 bg-[#25d366] text-white font-montserrat font-bold text-[11px] tracking-[2px] uppercase px-5 py-3 clip-btn-sm hover:brightness-110 transition-all">
-                  WhatsApp
-                </a>
-                {s.facebook && <a href={s.facebook} target="_blank" className="inline-flex items-center gap-2 border border-[var(--border)] text-gray-400 font-montserrat font-bold text-[11px] tracking-[2px] uppercase px-5 py-3 clip-btn-sm hover:border-gold hover:text-gold transition-all">Facebook</a>}
-                {s.instagram && <a href={s.instagram} target="_blank" className="inline-flex items-center gap-2 border border-[var(--border)] text-gray-400 font-montserrat font-bold text-[11px] tracking-[2px] uppercase px-5 py-3 clip-btn-sm hover:border-gold hover:text-gold transition-all">Instagram</a>}
-              </div>
-            </div>
-
-            {/* Contact Form / Map */}
-            <div className="reveal right">
-              {submitted ? (
-                <div className="border border-gold bg-[rgba(212,175,55,0.05)] p-10 text-center">
-                  <div className="text-gold text-5xl mb-4">✓</div>
-                  <h3 className="font-montserrat font-bold text-xl mb-2">Message Sent!</h3>
-                  <p className="text-gray-400">We&apos;ll get back to you shortly.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleContactSubmit} className="space-y-4">
-                  <div>
-                    <label className="form-label">Full Name</label>
-                    <input
-                      className="form-input"
-                      placeholder="Your name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="form-label">Phone</label>
-                    <input
-                      className="form-input"
-                      placeholder="Your phone number"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label className="form-label">Message</label>
-                    <textarea
-                      className="form-input resize-none"
-                      rows={5}
-                      placeholder="Tell us about your fitness goals..."
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      required
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full bg-gradient-to-br from-gold to-gold-dark text-black font-montserrat font-bold text-[12px] tracking-[2px] uppercase py-4 clip-btn hover:brightness-110 transition-all disabled:opacity-60"
-                  >
-                    {submitting ? 'Sending...' : 'Send Message'}
-                  </button>
-                </form>
-              )}
-
-              {s.googleMapsEmbed && (
-                <div className="border border-[var(--border)] overflow-hidden relative h-64 mt-6">
-                  <iframe src={s.googleMapsEmbed} className="w-full h-full border-none grayscale-[40%] invert hue-rotate-180" />
-                  <div className="absolute top-4 left-4 bg-[var(--glass)] backdrop-blur-xl border border-[var(--border)] px-4 py-2 font-montserrat font-bold text-[11px] tracking-[2px] text-gold uppercase">
-                    Find Us
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════
-          FOOTER
-      ═══════════════════════════ */}
-      <footer className="bg-[var(--bg)] border-t border-[var(--border)] pt-16 pb-8 px-10">
-        <div className="container mx-auto max-w-[1280px]">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-            <div>
-              <div className="flex items-center gap-3 mb-5">
-                <svg viewBox="0 0 44 44" fill="none" className="w-10 h-10">
-                  <path d="M22 3L40 11V26C40 35 32 41 22 44C12 41 4 35 4 26V11Z" fill="none" stroke="#D4AF37" strokeWidth="1.5"/>
-                  <rect x="13" y="20" width="18" height="4" rx="1.5" fill="#D4AF37"/>
-                </svg>
-                <div className="font-montserrat font-black text-[14px]">
-                  PHYSIO SLIM<span className="text-gold block text-[9px] tracking-[3px]">HEALTH CLUB</span>
-                </div>
-              </div>
-              <p className="text-[13.5px] text-gray-400 leading-relaxed max-w-[280px]">
-                {s.footerTagline || "Fayoum's premier fitness destination. Transform your body, mind, and life."}
+      {trainers.length > 0 && (
+        <section id="trainers" className="section-base bg-[var(--bg)]">
+          <div className="container mx-auto max-w-[1280px]">
+            <div className="text-center mb-14 reveal">
+              <p className="flex items-center justify-center gap-3 text-[11px] tracking-[5px] text-gold font-montserrat font-bold uppercase mb-4">
+                <span className="w-8 h-px bg-gold" />Expert Team<span className="w-8 h-px bg-gold" />
               </p>
-              <div className="flex gap-3 mt-5">
-                {[s.facebook, s.instagram, s.tiktok].filter(Boolean).map((link, i) => (
-                  <a key={i} href={link} target="_blank" className="w-10 h-10 border border-[var(--border)] flex items-center justify-center hover:border-gold hover:bg-[rgba(212,175,55,0.1)] transition-all">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A0A0A0" strokeWidth="1.5">
-                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-                    </svg>
-                  </a>
-                ))}
-              </div>
+              <h2 className="font-montserrat font-black uppercase leading-none" style={{ fontSize: 'clamp(32px,5vw,58px)' }}>
+                MEET THE <span className="text-gold">COACHES</span>
+              </h2>
+              <div className="w-14 h-0.5 bg-gradient-to-r from-gold to-transparent mx-auto mt-5" />
             </div>
 
-            <div>
-              <div className="font-montserrat font-black text-[12px] tracking-[3px] uppercase text-gold mb-5">Quick Links</div>
-              <ul className="space-y-3">
-                {['Home', 'Memberships', 'Facilities', 'Gallery', 'Contact'].map((link) => (
-                  <li key={link}>
-                    <a href={`#${link.toLowerCase()}`} className="text-gray-400 text-[13px] hover:text-gold transition-colors flex items-center gap-2 group">
-                      <span className="w-4 h-px bg-gold opacity-0 group-hover:opacity-100 transition-opacity" />
-                      {link}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {trainers.map((trainer, i) => (
+                <motion.div key={trainer.id}
+                  className="bg-[var(--surface)] border border-[rgba(212,175,55,0.08)] overflow-hidden hover:border-[rgba(212,175,55,0.3)] transition-all group hover:-translate-y-1"
+                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image src={trainer.image || 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80'} alt={trainer.name} fill
+                      className="object-cover object-top grayscale-[20%] transition-all duration-500 group-hover:scale-[1.06] group-hover:grayscale-0" sizes="(max-width: 768px) 100vw, 33vw" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[rgba(5,5,5,0.75)] via-transparent to-transparent" />
+                  </div>
+                  <div className="p-7">
+                    <div className="flex items-start justify-between mb-3">
+                      <div>
+                        <div className="font-montserrat font-black text-xl leading-tight">{trainer.name}</div>
+                        <div className="text-[11px] tracking-[2px] text-gold font-montserrat font-bold uppercase mt-1">{trainer.role || trainer.specialization}</div>
+                      </div>
+                      <div className="text-[12px] text-gray-400 font-montserrat font-bold">{trainer.experience}</div>
+                    </div>
+                    {trainer.bio && <p className="text-[13px] text-gray-400 leading-relaxed mb-4">{trainer.bio}</p>}
+                    {trainer.certifications && trainer.certifications.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mb-5">
+                        {trainer.certifications.slice(0, 3).map((cert: string) => (
+                          <span key={cert} className="text-[10px] tracking-[0.5px] border border-[rgba(212,175,55,0.15)] text-gray-400 px-2 py-1 font-montserrat">{cert}</span>
+                        ))}
+                      </div>
+                    )}
+                    <a href={s.whatsapp} target="_blank" onClick={() => trackEvent('whatsappClicks')}
+                      className="w-full flex items-center justify-center gap-2 border border-[rgba(212,175,55,0.2)] text-gold font-montserrat font-bold text-[11px] tracking-[2px] uppercase py-2.5 hover:border-gold hover:bg-[rgba(212,175,55,0.06)] transition-all">
+                      Book Session <Icon name="arrow" size={12} stroke="currentColor" />
                     </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <div className="font-montserrat font-black text-[12px] tracking-[3px] uppercase text-gold mb-5">Services</div>
-              <ul className="space-y-3">
-                {['Personal Training', 'Group Classes', 'Swimming Pool', 'Ladies Section', 'Kids Program'].map((s) => (
-                  <li key={s} className="text-gray-400 text-[13px]">{s}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <div className="font-montserrat font-black text-[12px] tracking-[3px] uppercase text-gold mb-5">Contact</div>
-              {[
-                { icon: 'phone', text: s.phone },
-                { icon: 'mail', text: s.email },
-                { icon: 'map-pin', text: s.address },
-              ].map((item) => (
-                <div key={item.icon} className="flex gap-3 items-start mb-3.5 text-[13px] text-gray-400">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="1.5" className="flex-shrink-0 mt-0.5">
-                    {item.icon === 'phone' && <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.09h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6A16 16 0 0 0 15.4 16l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 23 17.12v-.2z"/>}
-                    {item.icon === 'mail' && <><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></>}
-                    {item.icon === 'map-pin' && <><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></>}
-                  </svg>
-                  {item.text}
-                </div>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </div>
+        </section>
+      )}
 
-          <div className="border-t border-[var(--border)] pt-7 flex flex-wrap justify-between items-center gap-4">
-            <p className="text-[12px] text-gray-600">
-              {s.copyright || `© ${new Date().getFullYear()} Physio Slim Health Club. All rights reserved.`}
-            </p>
-            <p className="text-[12px] text-gray-600">
-              Crafted with passion in <span className="text-gold">Fayoum, Egypt</span>
-            </p>
-          </div>
-        </div>
-      </footer>
-
-      {/* ── FLOATING WHATSAPP ── */}
-      <a
-        href={s.whatsapp}
-        target="_blank"
-        onClick={() => trackEvent('whatsappClicks')}
-        className="fixed bottom-7 left-7 z-[500] w-14 h-14 rounded-full bg-[#25d366] flex items-center justify-center shadow-[0_4px_24px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform animate-[waBounce_2s_ease-in-out_infinite]"
-        aria-label="WhatsApp"
-      >
-        <svg viewBox="0 0 24 24" className="w-7 h-7 fill-white">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-      </a>
-    </>
-  )
-}
-                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image src={trainer.image || 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=80'} alt={trainer.name} fill
-                    className="object-cover object-top grayscale-[20%] transition-all duration-500 group-hover:scale-[1.06] group-hover:grayscale-0" sizes="(max-width: 768px) 100vw, 33vw" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(5,5,5,0.75)] via-transparent to-transparent" />
-                </div>
-                <div className="p-7">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <div className="font-montserrat font-black text-xl leading-tight">{trainer.name}</div>
-                      <div className="text-[11px] tracking-[2px] text-gold font-montserrat font-bold uppercase mt-1">{trainer.role || trainer.specialization}</div>
-                    </div>
-                    <div className="text-[12px] text-gray-400 font-montserrat font-bold">{trainer.experience}</div>
-                  </div>
-                  {trainer.bio && <p className="text-[13px] text-gray-400 leading-relaxed mb-4">{trainer.bio}</p>}
-                  {trainer.certifications && trainer.certifications.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 mb-5">
-                      {trainer.certifications.slice(0, 3).map((cert: string) => (
-                        <span key={cert} className="text-[10px] tracking-[0.5px] border border-[rgba(212,175,55,0.15)] text-gray-400 px-2 py-1 font-montserrat">{cert}</span>
-                      ))}
-                    </div>
-                  )}
-                  <a href={s.whatsapp} target="_blank" onClick={() => trackEvent('whatsappClicks')}
-                    className="w-full flex items-center justify-center gap-2 border border-[rgba(212,175,55,0.2)] text-gold font-montserrat font-bold text-[11px] tracking-[2px] uppercase py-2.5 hover:border-gold hover:bg-[rgba(212,175,55,0.06)] transition-all">
-                    Book Session <Icon name="arrow" size={12} stroke="currentColor" />
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Transformations */}
+      {/* ── TRANSFORMATIONS ── */}
       <TransformationsSection whatsapp={s.whatsapp} />
 
       {/* ═══════════════════════════
@@ -912,16 +860,18 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
       <section id="gallery" className="section-base bg-[var(--bg)]" onClick={() => trackEvent('galleryViews')}>
         <div className="container mx-auto max-w-[1280px]">
           <div className="text-center mb-12 reveal">
-            <div className="section-eyebrow justify-center mb-4">Gallery</div>
+            <p className="flex items-center justify-center gap-3 text-[11px] tracking-[5px] text-gold font-montserrat font-bold uppercase mb-4">
+              <span className="w-8 h-px bg-gold" />Gallery<span className="w-8 h-px bg-gold" />
+            </p>
             <h2 className="font-montserrat font-black uppercase leading-none" style={{ fontSize: 'clamp(32px,5vw,58px)' }}>
               OUR <span className="text-gold">CLUB</span>
             </h2>
-            <div className="gold-divider center mt-5" />
+            <div className="w-14 h-0.5 bg-gradient-to-r from-gold to-transparent mx-auto mt-5" />
           </div>
 
           {galleryCats.length > 1 && (
             <div className="flex flex-wrap gap-2 justify-center mb-10">
-              {galleryCats.map(cat => (
+              {galleryCats.map((cat) => (
                 <button key={cat} onClick={() => setGalleryFilter(cat)}
                   className={`px-5 py-2 font-montserrat font-bold text-[10px] tracking-[2px] uppercase border transition-all ${galleryFilter === cat ? 'border-gold text-gold bg-[rgba(212,175,55,0.08)]' : 'border-[rgba(212,175,55,0.12)] text-gray-400 hover:border-gold hover:text-gold'}`}>
                   {cat}
@@ -932,8 +882,9 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
 
           <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
             <AnimatePresence>
-              {filteredGallery.slice(0, 8).map((img: any, i: number) => (
-                <motion.div key={img.id} layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
+              {displayGallery.slice(0, 8).map((img: any, i: number) => (
+                <motion.div key={img.id} layout
+                  initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
                   className={`relative overflow-hidden cursor-pointer group ${i === 0 ? 'col-span-2 row-span-2' : ''}`}
                   style={{ aspectRatio: '1' }}
                   onClick={() => setLightbox({ open: true, idx: i })}>
@@ -966,30 +917,52 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
               <Icon name="close" size={18} stroke="white" />
             </button>
             <button className="absolute left-6 top-1/2 -translate-y-1/2 w-11 h-11 border border-[rgba(212,175,55,0.2)] hover:border-gold flex items-center justify-center transition-all"
-              onClick={e => { e.stopPropagation(); setLightbox(p => ({ ...p, idx: (p.idx - 1 + filteredGallery.length) % filteredGallery.length })) }}>
+              onClick={(e) => { e.stopPropagation(); setLightbox((p) => ({ ...p, idx: (p.idx - 1 + displayGallery.length) % displayGallery.length })) }}>
               <Icon name="chevLeft" size={18} stroke="white" />
             </button>
             <button className="absolute right-24 top-1/2 -translate-y-1/2 w-11 h-11 border border-[rgba(212,175,55,0.2)] hover:border-gold flex items-center justify-center transition-all"
-              onClick={e => { e.stopPropagation(); setLightbox(p => ({ ...p, idx: (p.idx + 1) % filteredGallery.length })) }}>
+              onClick={(e) => { e.stopPropagation(); setLightbox((p) => ({ ...p, idx: (p.idx + 1) % displayGallery.length })) }}>
               <Icon name="chevRight" size={18} stroke="white" />
             </button>
-            <Image src={filteredGallery[lightbox.idx]?.url || ''} alt="Gallery" width={1200} height={800}
+            <Image src={displayGallery[lightbox.idx]?.url || ''} alt="Gallery" width={1200} height={800}
               className="max-w-[88vw] max-h-[88vh] object-contain border border-[rgba(212,175,55,0.15)]"
-              onClick={e => e.stopPropagation()} />
+              onClick={(e) => e.stopPropagation()} />
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* ═══════════════════════════
+          STATS
+      ═══════════════════════════ */}
+      <section id="stats" className="py-0 bg-gradient-to-br from-[var(--surface)] to-[var(--bg)] border-t border-b border-[var(--border)]">
+        <div className="grid grid-cols-2 md:grid-cols-4 border border-[var(--border)]">
+          {(about?.stats || [
+            { number: '2000+', label: 'Active Members' },
+            { number: '15+', label: 'Expert Coaches' },
+            { number: '5+', label: 'Years of Excellence' },
+            { number: '98%', label: 'Satisfaction Rate' },
+          ]).map((stat, i) => (
+            <div key={i} className="bg-[var(--bg)] py-14 px-10 text-center relative overflow-hidden border-r border-[var(--border)] last:border-r-0 reveal">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-0.5 bg-gold" />
+              <div className="font-montserrat font-black text-[64px] leading-none text-gold">{stat.number}</div>
+              <div className="font-montserrat font-semibold text-[11px] tracking-[4px] text-gray-400 uppercase mt-2.5">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* ═══════════════════════════
           TESTIMONIALS
       ═══════════════════════════ */}
       <section id="reviews" className="section-base bg-[var(--surface)] overflow-hidden">
         <div className="text-center mb-16 reveal">
-          <div className="section-eyebrow justify-center mb-4">Member Reviews</div>
+          <p className="flex items-center justify-center gap-3 text-[11px] tracking-[5px] text-gold font-montserrat font-bold uppercase mb-4">
+            <span className="w-8 h-px bg-gold" />Member Reviews<span className="w-8 h-px bg-gold" />
+          </p>
           <h2 className="font-montserrat font-black uppercase leading-none" style={{ fontSize: 'clamp(32px,5vw,58px)' }}>
             SUCCESS <span className="text-gold">STORIES</span>
           </h2>
-          <div className="gold-divider center mt-5" />
+          <div className="w-14 h-0.5 bg-gradient-to-r from-gold to-transparent mx-auto mt-5" />
         </div>
 
         <div className="relative overflow-hidden">
@@ -1005,8 +978,8 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
             ] as any[]), ...(testimonials.length > 0 ? testimonials : [
               { id: '6', name: 'Layla Youssef', rating: 5, comment: 'Premium equipment, expert coaches, and a community that supports you every step. The best fitness club in Fayoum without question.', memberSince: '2022', initials: 'LY' },
             ] as any[])].map((t, i) => (
-              <div key={`${t.id}-${i}`} className="bg-[var(--card)] border border-[rgba(212,175,55,0.08)] p-8 w-[360px] flex-shrink-0 relative hover:border-[rgba(212,175,55,0.25)] transition-all group hover:-translate-y-1">
-                <div className="absolute top-5 right-6 font-serif font-black text-[80px] leading-none text-[rgba(212,175,55,0.06)] select-none">"</div>
+              <div key={`${t.id}-${i}`} className="bg-[var(--card,var(--bg))] border border-[rgba(212,175,55,0.08)] p-8 w-[360px] flex-shrink-0 relative hover:border-[rgba(212,175,55,0.25)] transition-all group hover:-translate-y-1">
+                <div className="absolute top-5 right-6 font-serif font-black text-[80px] leading-none text-[rgba(212,175,55,0.06)] select-none">&ldquo;</div>
                 <div className="flex gap-0.5 mb-5">
                   {Array.from({ length: t.rating }).map((_, j) => (
                     <svg key={j} width="13" height="13" viewBox="0 0 24 24" fill="#D4AF37"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1028,13 +1001,13 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
         </div>
       </section>
 
-      {/* Calculators */}
+      {/* ── CALCULATORS ── */}
       <FitnessCalculators />
 
-      {/* AI Features */}
+      {/* ── AI FEATURES ── */}
       <AIFeaturesSection whatsapp={s.whatsapp} />
 
-      {/* Member Portal */}
+      {/* ── MEMBER PORTAL ── */}
       <MemberPortalSection whatsapp={s.whatsapp} />
 
       {/* ═══════════════════════════
@@ -1043,18 +1016,21 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
       <section id="contact" className="section-base bg-[var(--bg)]">
         <div className="container mx-auto max-w-[1280px]">
           <div className="text-center mb-16 reveal">
-            <div className="section-eyebrow justify-center mb-4">Contact Us</div>
+            <p className="flex items-center justify-center gap-3 text-[11px] tracking-[5px] text-gold font-montserrat font-bold uppercase mb-4">
+              <span className="w-8 h-px bg-gold" />Contact Us<span className="w-8 h-px bg-gold" />
+            </p>
             <h2 className="font-montserrat font-black uppercase leading-none" style={{ fontSize: 'clamp(32px,5vw,58px)' }}>
               GET IN <span className="text-gold">TOUCH</span>
             </h2>
-            <div className="gold-divider center mt-5" />
+            <div className="w-14 h-0.5 bg-gradient-to-r from-gold to-transparent mx-auto mt-5" />
           </div>
+
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div className="reveal left space-y-5">
               {[
                 { icon: 'phone', label: 'Phone', value: s.phone, link: `tel:${s.phone}` },
                 { icon: 'mail', label: 'Email', value: s.email, link: `mailto:${s.email}` },
-                { icon: 'pin', label: 'Location', value: s.address },
+                { icon: 'pin', label: 'Location', value: s.address, link: undefined },
               ].map((item) => (
                 <div key={item.icon} className="flex gap-5 items-center p-5 border border-[rgba(212,175,55,0.08)] hover:border-[rgba(212,175,55,0.25)] transition-colors">
                   <div className="w-12 h-12 bg-[rgba(212,175,55,0.06)] border border-[rgba(212,175,55,0.15)] flex items-center justify-center flex-shrink-0">
@@ -1074,16 +1050,17 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
                   <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
                   WhatsApp
                 </a>
-                {s.facebook !== '#' && <a href={s.facebook} target="_blank" className="inline-flex items-center gap-2 border border-[rgba(212,175,55,0.2)] text-gray-400 font-montserrat font-bold text-[11px] tracking-[2px] uppercase px-5 py-3 clip-btn-sm hover:border-gold hover:text-gold transition-all">Facebook</a>}
-                {s.instagram !== '#' && <a href={s.instagram} target="_blank" className="inline-flex items-center gap-2 border border-[rgba(212,175,55,0.2)] text-gray-400 font-montserrat font-bold text-[11px] tracking-[2px] uppercase px-5 py-3 clip-btn-sm hover:border-gold hover:text-gold transition-all">Instagram</a>}
+                {s.facebook && s.facebook !== '#' && <a href={s.facebook} target="_blank" className="inline-flex items-center gap-2 border border-[rgba(212,175,55,0.2)] text-gray-400 font-montserrat font-bold text-[11px] tracking-[2px] uppercase px-5 py-3 clip-btn-sm hover:border-gold hover:text-gold transition-all">Facebook</a>}
+                {s.instagram && s.instagram !== '#' && <a href={s.instagram} target="_blank" className="inline-flex items-center gap-2 border border-[rgba(212,175,55,0.2)] text-gray-400 font-montserrat font-bold text-[11px] tracking-[2px] uppercase px-5 py-3 clip-btn-sm hover:border-gold hover:text-gold transition-all">Instagram</a>}
               </div>
               {s.googleMapsEmbed && (
                 <div className="border border-[rgba(212,175,55,0.15)] overflow-hidden relative h-56 mt-2">
                   <iframe src={s.googleMapsEmbed} className="w-full h-full border-none grayscale-[50%] invert hue-rotate-180" />
-                  <div className="absolute top-4 left-4 bg-[var(--glass)] backdrop-blur-xl border border-[rgba(212,175,55,0.2)] px-4 py-2 font-montserrat font-bold text-[10px] tracking-[2px] text-gold uppercase">Find Us</div>
+                  <div className="absolute top-4 left-4 bg-[var(--glass,rgba(13,13,13,0.7))] backdrop-blur-xl border border-[rgba(212,175,55,0.2)] px-4 py-2 font-montserrat font-bold text-[10px] tracking-[2px] text-gold uppercase">Find Us</div>
                 </div>
               )}
             </div>
+
             <div className="reveal right">
               {submitted ? (
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
@@ -1092,14 +1069,23 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
                     <Icon name="check" size={28} stroke="#D4AF37" strokeWidth={2.5} />
                   </div>
                   <h3 className="font-montserrat font-black text-2xl mb-3">Message Sent!</h3>
-                  <p className="text-gray-400">We'll get back to you within 24 hours.</p>
+                  <p className="text-gray-400">We&apos;ll get back to you within 24 hours.</p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleContactSubmit} className="space-y-5 bg-[var(--card)] border border-[rgba(212,175,55,0.1)] p-9">
+                <form onSubmit={handleContactSubmit} className="space-y-5 bg-[var(--surface)] border border-[rgba(212,175,55,0.1)] p-9">
                   <div className="text-[10px] tracking-[4px] text-gold font-montserrat font-bold uppercase mb-6">Send Us a Message</div>
-                  <div><label className="form-label">Full Name</label><input className="form-input" placeholder="Your full name" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} required /></div>
-                  <div><label className="form-label">Phone Number</label><input className="form-input" placeholder="+20 1XX XXX XXXX" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} required /></div>
-                  <div><label className="form-label">Message</label><textarea className="form-input resize-none" rows={4} placeholder="Tell us about your fitness goals..." value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} required /></div>
+                  <div>
+                    <label className="form-label">Full Name</label>
+                    <input className="form-input" placeholder="Your full name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} required />
+                  </div>
+                  <div>
+                    <label className="form-label">Phone Number</label>
+                    <input className="form-input" placeholder="+20 1XX XXX XXXX" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} required />
+                  </div>
+                  <div>
+                    <label className="form-label">Message</label>
+                    <textarea className="form-input resize-none" rows={4} placeholder="Tell us about your fitness goals..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} required />
+                  </div>
                   <button type="submit" disabled={submitting}
                     className="w-full bg-gradient-to-r from-gold to-gold-dark text-black font-montserrat font-black text-[12px] tracking-[2.5px] uppercase py-4 clip-btn hover:brightness-110 transition-all disabled:opacity-60">
                     {submitting ? 'Sending...' : 'Send Message'}
@@ -1127,16 +1113,17 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
                 <div className="font-montserrat font-black text-[14px]">PHYSIO SLIM<span className="text-gold block text-[9px] tracking-[3px] font-semibold">HEALTH CLUB</span></div>
               </div>
               <p className="text-[13.5px] text-gray-500 leading-relaxed mb-5">
-                {(s as any).footerTagline || "Fayoum's premier fitness destination. Transform your body, mind, and life with Egypt's finest coaching team."}
+                {s.footerTagline || "Fayoum's premier fitness destination. Transform your body, mind, and life with Egypt's finest coaching team."}
               </p>
               <div className="flex gap-2.5">
-                {[s.facebook, s.instagram, s.tiktok].filter(l => l && l !== '#').map((link, i) => (
+                {[s.facebook, s.instagram, s.tiktok].filter((l) => l && l !== '#').map((link, i) => (
                   <a key={i} href={link} target="_blank" className="w-9 h-9 border border-[rgba(212,175,55,0.15)] flex items-center justify-center hover:border-gold hover:bg-[rgba(212,175,55,0.07)] transition-all">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5"><rect width="20" height="20" x="2" y="2" rx="5"/></svg>
                   </a>
                 ))}
               </div>
             </div>
+
             <div>
               <div className="font-montserrat font-black text-[11px] tracking-[3px] uppercase text-gold mb-6">Quick Links</div>
               <ul className="space-y-3">
@@ -1149,6 +1136,7 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
                 ))}
               </ul>
             </div>
+
             <div>
               <div className="font-montserrat font-black text-[11px] tracking-[3px] uppercase text-gold mb-6">Services</div>
               <ul className="space-y-3">
@@ -1157,6 +1145,7 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
                 ))}
               </ul>
             </div>
+
             <div>
               <div className="font-montserrat font-black text-[11px] tracking-[3px] uppercase text-gold mb-6">Contact</div>
               <div className="space-y-4">
@@ -1174,6 +1163,7 @@ export default function SiteClient({ settings, hero, memberships, facilities, ga
               </div>
             </div>
           </div>
+
           <div className="border-t border-[rgba(212,175,55,0.08)] pt-7 flex flex-wrap justify-between items-center gap-4">
             <p className="text-[12px] text-gray-600">{s.copyright || `© ${new Date().getFullYear()} Physio Slim Health Club. All rights reserved.`}</p>
             <p className="text-[12px] text-gray-600">Crafted with passion in <span className="text-gold">Fayoum, Egypt</span></p>
